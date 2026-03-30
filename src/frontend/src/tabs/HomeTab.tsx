@@ -326,50 +326,6 @@ export default function HomeTab({ onNavigate }: HomeTabProps) {
         </div>
       </div>
 
-      {/* Ethiopian Flag Strip */}
-      <motion.div
-        initial={{ opacity: 0, y: -6 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="mx-4 mt-4 rounded-xl overflow-hidden"
-        style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.25)" }}
-      >
-        <div className="flex items-center">
-          {/* Flag stripes */}
-          <div
-            className="flex flex-col flex-shrink-0"
-            style={{ width: 48, height: 36 }}
-          >
-            <div className="flex-1" style={{ background: "#078930" }} />
-            <div className="flex-1" style={{ background: "#FCDD09" }} />
-            <div className="flex-1" style={{ background: "#DA121A" }} />
-          </div>
-          {/* Label */}
-          <div
-            className="flex items-center gap-2 px-4 py-2 flex-1"
-            style={{ background: "oklch(0.20 0.04 45)" }}
-          >
-            <span className="text-lg" aria-hidden="true">
-              🇪🇹
-            </span>
-            <div>
-              <p
-                className="text-xs font-bold tracking-wider"
-                style={{ color: "oklch(0.90 0.015 80)" }}
-              >
-                Ethiopia
-              </p>
-              <p
-                className="text-[10px]"
-                style={{ color: "oklch(0.55 0.015 80)" }}
-              >
-                Pride · Unity · Independence
-              </p>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-
       {/* Nav Cards Grid */}
       <div className="p-4">
         <p
