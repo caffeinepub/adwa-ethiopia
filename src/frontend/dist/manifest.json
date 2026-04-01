@@ -1,0 +1,26 @@
+{
+  "name": "Adwa Ethiopia",
+  "short_name": "Adwa Ethiopia",
+  "description": "An interactive historical website about the Battle of Adwa (1896). Developed by Helen Metekiya.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a2a3a",
+  "theme_color": "#1a2a3a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/generated/adwa-icon.dim_512x512.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/generated/adwa-icon.dim_512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "history"],
+  "lang": "en"
+}

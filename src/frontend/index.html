@@ -2,10 +2,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+    <title>Adwa Ethiopia - Battle of Adwa History</title>
+    <meta name="description" content="An interactive historical website about the Battle of Adwa (1896), featuring the Heroes of Adwa, documentary videos, patriotic music, a gallery, quiz, and more. Developed by Helen Metekiya." />
+    <meta name="keywords" content="Adwa, Battle of Adwa, Ethiopia, Ethiopian history, Menelik II, Empress Taytu, Heroes of Adwa" />
+    <meta name="author" content="Helen Metekiya" />
+    <meta name="theme-color" content="#1a2a3a" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/assets/generated/adwa-icon.dim_512x512.png" />
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Adwa Ethiopia - Battle of Adwa History" />
+    <meta property="og:description" content="Interactive historical website about the Battle of Adwa (1896). Developed by Helen Metekiya." />
+    <meta property="og:image" content="/assets/generated/adwa-icon.dim_512x512.png" />
+    <meta property="og:type" content="website" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js');
+        });
+      }
+    </script>
   </body>
 </html>
