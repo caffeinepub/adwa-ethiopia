@@ -112,3 +112,16 @@
 section {
   scroll-margin-top: 72px;
 }
+
+/* Heroes of Adwa Cards */
+.hero-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+.hero-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px
+    rgba(252, 181, 20, 0.25);
+}

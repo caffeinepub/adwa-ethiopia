@@ -19,6 +19,7 @@ import CommentsSection from "./sections/CommentsSection";
 import DocumentarySection from "./sections/DocumentarySection";
 import DonationSection from "./sections/DonationSection";
 import GallerySection from "./sections/GallerySection";
+import HeroesSection from "./sections/HeroesSection";
 import HistorySection from "./sections/HistorySection";
 import HomeSection from "./sections/HomeSection";
 import LearnSection from "./sections/LearnSection";
@@ -41,6 +42,9 @@ export default function App() {
         </section>
         <section id="history">
           <HistorySection />
+        </section>
+        <section id="heroes">
+          <HeroesSection />
         </section>
         <section id="gallery">
           <GallerySection />
