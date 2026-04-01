@@ -7,13 +7,30 @@
     <meta name="keywords" content="Adwa, Battle of Adwa, Ethiopia, Ethiopian history, Menelik II, Empress Taytu, Heroes of Adwa" />
     <meta name="author" content="Helen Metekiya" />
     <meta name="theme-color" content="#1a2a3a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Adwa Ethiopia" />
+    <meta name="application-name" content="Adwa Ethiopia" />
+    <meta name="msapplication-TileColor" content="#1a2a3a" />
+    <meta name="msapplication-TileImage" content="/assets/generated/icon-512x512.dim_512x512.png" />
     <link rel="manifest" href="/manifest.json" />
-    <link rel="apple-touch-icon" href="/assets/generated/adwa-icon.dim_512x512.png" />
+    <link rel="apple-touch-icon" href="/assets/generated/icon-512x512.dim_512x512.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/generated/icon-512x512.dim_512x512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/generated/icon-512x512.dim_512x512.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="/assets/generated/icon-512x512.dim_512x512.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/generated/icon-512x512.dim_512x512.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/generated/icon-512x512.dim_512x512.png" />
     <!-- Open Graph for social sharing -->
     <meta property="og:title" content="Adwa Ethiopia - Battle of Adwa History" />
     <meta property="og:description" content="Interactive historical website about the Battle of Adwa (1896). Developed by Helen Metekiya." />
-    <meta property="og:image" content="/assets/generated/adwa-icon.dim_512x512.png" />
+    <meta property="og:image" content="/assets/generated/icon-512x512.dim_512x512.png" />
     <meta property="og:type" content="website" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Adwa Ethiopia - Battle of Adwa History" />
+    <meta name="twitter:description" content="Interactive historical website about the Battle of Adwa (1896). Developed by Helen Metekiya." />
+    <meta name="twitter:image" content="/assets/generated/icon-512x512.dim_512x512.png" />
     <script type="module" crossorigin src="/assets/index-BmXbrWsN.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-CoTDP9sb.css">
   </head>
@@ -22,7 +39,11 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/sw.js');
+          navigator.serviceWorker.register('/sw.js').then(function(reg) {
+            console.log('Service Worker registered:', reg.scope);
+          }).catch(function(err) {
+            console.log('Service Worker registration failed:', err);
+          });
         });
       }
     </script>

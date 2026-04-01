@@ -1,26 +1,125 @@
 {
   "name": "Adwa Ethiopia",
-  "short_name": "Adwa Ethiopia",
+  "short_name": "Adwa",
   "description": "An interactive historical website about the Battle of Adwa (1896). Developed by Helen Metekiya.",
   "start_url": "/",
+  "id": "/",
+  "scope": "/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui", "browser"],
   "background_color": "#1a2a3a",
-  "theme_color": "#1a2a3a",
+  "theme_color": "#c9a227",
   "orientation": "portrait-primary",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "history"],
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+  },
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
   "icons": [
     {
-      "src": "/assets/generated/adwa-icon.dim_512x512.png",
+      "src": "/assets/generated/icon-192x192.dim_192x192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "/assets/generated/adwa-icon.dim_512x512.png",
+      "src": "/assets/generated/icon-512x512.dim_512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/generated/icon-192x192.dim_192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/generated/icon-512x512.dim_512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
-  "categories": ["education", "history"],
-  "lang": "en"
+  "screenshots": [
+    {
+      "src": "/assets/generated/screenshot-wide.dim_1280x720.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Adwa Ethiopia Homepage - Desktop"
+    },
+    {
+      "src": "/assets/generated/screenshot-narrow.dim_390x844.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Adwa Ethiopia - Mobile"
+    }
+  ],
+  "prefer_related_applications": false,
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "/"
+    }
+  ],
+  "scope_extensions": [
+    { "origin": "*.ic0.app" },
+    { "origin": "*.icp0.io" },
+    { "origin": "*.caffeine.ai" }
+  ],
+  "file_handlers": [
+    {
+      "action": "/",
+      "accept": {
+        "text/plain": [".txt"],
+        "image/png": [".png"],
+        "image/jpeg": [".jpg", ".jpeg"]
+      }
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Heroes of Adwa",
+      "short_name": "Heroes",
+      "url": "/#heroes",
+      "description": "View the Heroes of Adwa section",
+      "icons": [{ "src": "/assets/generated/icon-192x192.dim_192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "History Quiz",
+      "short_name": "Quiz",
+      "url": "/#quiz",
+      "description": "Take the Adwa history quiz",
+      "icons": [{ "src": "/assets/generated/icon-192x192.dim_192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Gallery",
+      "short_name": "Gallery",
+      "url": "/#gallery",
+      "description": "View the Adwa gallery",
+      "icons": [{ "src": "/assets/generated/icon-192x192.dim_192x192.png", "sizes": "192x192" }]
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+adwa",
+      "url": "/?q=%s"
+    }
+  ]
 }
