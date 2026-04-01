@@ -3,7 +3,9 @@ import { useScrollAnimation } from "../hooks/useScrollAnimation";
 const heroes = [
   {
     name: "Emperor Menelik II",
+    amharic: "ዳግማዊ አጤ ምኒልክ",
     title: "Commander-in-Chief",
+    quote: "Ethiopia shall never bow to a foreign power.",
     description:
       "Leader of Ethiopia who united different regions and led the army to a historic victory against Italy in 1896, securing the nation's independence.",
     image: "/assets/generated/hero-menelik.dim_400x500.jpg",
@@ -11,7 +13,10 @@ const heroes = [
   },
   {
     name: "Empress Taytu Betul",
+    amharic: "እቴጌ ጣይቱ ብጡል",
     title: "Empress of Ethiopia",
+    quote:
+      "I am a woman and I do not love war, but I prefer death to accepting slavery.",
     description:
       "Strong and intelligent leader who played a key role in strategy and logistics, and personally supported the army during the Battle of Adwa.",
     image: "/assets/generated/hero-taytu.dim_400x500.jpg",
@@ -19,7 +24,9 @@ const heroes = [
   },
   {
     name: "Ras Alula",
+    amharic: "ራስ አሉላ",
     title: "Military General",
+    quote: "No enemy shall pass while I stand.",
     description:
       "Brilliant general known for his extraordinary military skills and long experience defending Ethiopia's borders from foreign threats.",
     image: "/assets/generated/hero-alula.dim_400x400.jpg",
@@ -27,7 +34,9 @@ const heroes = [
   },
   {
     name: "Ras Makonnen",
+    amharic: "ራስ መኮንን",
     title: "Governor of Harar",
+    quote: "Our land is not for sale; it is worth our blood.",
     description:
       "A respected commander and close advisor to Menelik II who played a major role in the battle. Father of Emperor Haile Selassie.",
     image: "/assets/generated/hero-makonnen.dim_400x500.jpg",
@@ -35,7 +44,9 @@ const heroes = [
   },
   {
     name: "Ras Mengesha Yohannes",
+    amharic: "ራስ መንገሻ ዮሐንስ",
     title: "Son of Emperor Yohannes IV",
+    quote: "We carry the legacy of our fathers into battle.",
     description:
       "Son of Emperor Yohannes IV who contributed forces and decisive leadership during the war against the Italian colonial forces.",
     image: "/assets/generated/hero-mengesha.dim_400x400.jpg",
@@ -43,7 +54,9 @@ const heroes = [
   },
   {
     name: "Ras Mikael of Wollo",
+    amharic: "ራስ ሚካኤል ወሎ",
     title: "Commander of Wollo Forces",
+    quote: "Unity is the shield that no spear can pierce.",
     description:
       "A powerful leader who brought a strong army from Wollo to the battlefield and played a pivotal role in surrounding the Italian forces.",
     image: "/assets/generated/hero-mikael.dim_400x500.jpg",
@@ -51,7 +64,9 @@ const heroes = [
   },
   {
     name: "Negus Tekle Haymanot",
+    amharic: "ንጉስ ተክለ ሃይማኖት",
     title: "King of Gojjam",
+    quote: "Gojjam stands with Ethiopia — always and forever.",
     description:
       "King of Gojjam who contributed a large army and gave vital support to Emperor Menelik II in the decisive battle for Ethiopia's freedom.",
     image: "/assets/generated/hero-tekle-haymanot.dim_400x400.jpg",
@@ -59,7 +74,9 @@ const heroes = [
   },
   {
     name: "Dejazmach Gebeyehu",
+    amharic: "ደጃዝማች ገበየሁ",
     title: "War Hero of Adwa",
+    quote: "I fall so that Ethiopia may stand.",
     description:
       "A brave warrior who fought heroically on the battlefield and made the ultimate sacrifice for Ethiopia's independence. His courage is eternal.",
     image: "/assets/generated/hero-gebeyehu.dim_400x500.jpg",
@@ -67,7 +84,9 @@ const heroes = [
   },
   {
     name: "Balcha Safo",
+    amharic: "ደጃዝማች ባልቻ ሳፎ",
     title: "Commander & General",
+    quote: "Fear has no place in an Ethiopian's heart.",
     description:
       "A skilled and courageous general known for his fierce leadership in war. His bravery at Adwa made him one of Ethiopia's most celebrated soldiers.",
     image: "/assets/generated/hero-balcha.dim_400x500.jpg",
@@ -75,7 +94,9 @@ const heroes = [
   },
   {
     name: "Fitawrari Habte Giyorgis",
+    amharic: "ፊታውራሪ ሃብተ ጊዮርጊስ",
     title: "Military Organizer",
+    quote: "Discipline and order are the foundation of every victory.",
     description:
       "A key military organizer and commander who helped coordinate Ethiopian forces with precision and discipline throughout the campaign.",
     image: "/assets/generated/hero-habte-giyorgis.dim_400x400.jpg",
@@ -83,7 +104,9 @@ const heroes = [
   },
   {
     name: "Fitawrari Tekle",
+    amharic: "ፊታውራሪ ተክሌ",
     title: "Battlefield Commander",
+    quote: "Courage is the armor of the righteous.",
     description:
       "A courageous battlefield leader known for his bravery and discipline, who inspired his troops and fought with great valor at Adwa.",
     image: "/assets/generated/hero-fitawrari-tekle.dim_400x400.jpg",
@@ -91,7 +114,9 @@ const heroes = [
   },
   {
     name: "Azmach Tafari",
+    amharic: "አዝማች ተፈሪ",
     title: "Troop Commander",
+    quote: "A true soldier fights not for glory, but for his people.",
     description:
       "A strong and resolute commander who led troops with remarkable courage and strategic skill throughout the Battle of Adwa in 1896.",
     image: "/assets/generated/hero-azmach-tafari.dim_400x400.jpg",
@@ -235,18 +260,39 @@ export default function HeroesSection() {
 
                 {/* Name */}
                 <h3
-                  className="text-lg font-bold mb-3 leading-tight"
+                  className="text-lg font-bold mb-1 leading-tight"
                   style={{ color: "oklch(0.96 0.01 90)" }}
                 >
                   {hero.name}
                 </h3>
 
+                {/* Amharic Name */}
+                <p
+                  className="text-sm font-semibold mb-3"
+                  style={{ color: hero.accent, fontFamily: "serif" }}
+                >
+                  {hero.amharic}
+                </p>
+
                 {/* Description */}
                 <p
-                  className="text-sm leading-relaxed"
+                  className="text-sm leading-relaxed mb-4"
                   style={{ color: "oklch(0.62 0.02 90)" }}
                 >
                   {hero.description}
+                </p>
+
+                {/* Quote */}
+                <p
+                  className="text-xs italic leading-relaxed px-1"
+                  style={{
+                    color: "oklch(0.72 0.02 90)",
+                    borderLeft: `2px solid ${hero.accent}66`,
+                    paddingLeft: 10,
+                    textAlign: "left",
+                  }}
+                >
+                  "{hero.quote}"
                 </p>
 
                 {/* Bottom accent line */}
