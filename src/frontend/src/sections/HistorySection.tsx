@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AmharicNarration from "../components/AmharicNarration";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const timelineSteps = [
@@ -200,6 +201,12 @@ export default function HistorySection() {
           </div>
         </FadeBlock>
       </div>
+
+      {/* SACRIFICE Narration */}
+      <AmharicNarration
+        lines={["ብዙዎች ቆመው።", "ብዙዎች ወደቁ።", "ነገር ግን መስዋዕታቸው አልጠፋም።"]}
+        className="mt-4 mb-4 mx-auto"
+      />
 
       {/* Lightbox */}
       {lightbox && (

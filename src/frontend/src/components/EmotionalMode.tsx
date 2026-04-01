@@ -57,12 +57,8 @@ export default function EmotionalMode() {
 
   useEffect(() => {
     if (active) {
-      document.body.classList.add("emotional-mode");
       startMusic();
-    } else {
-      document.body.classList.remove("emotional-mode");
     }
-    return () => document.body.classList.remove("emotional-mode");
   }, [active, startMusic]);
 
   useEffect(() => {
@@ -87,9 +83,9 @@ export default function EmotionalMode() {
           style={{
             position: "fixed",
             inset: 0,
-            zIndex: 40,
+            zIndex: 60,
             pointerEvents: "none",
-            background: "rgba(0,0,0,0.5)",
+            background: "rgba(0,0,0,0.55)",
             transition: "opacity 1.5s ease",
             opacity: 1,
           }}
@@ -101,12 +97,12 @@ export default function EmotionalMode() {
         <div
           style={{
             position: "fixed",
-            bottom: "5rem",
+            bottom: 0,
             left: 0,
             right: 0,
-            zIndex: 45,
-            padding: "2rem",
-            background: "rgba(0,0,0,0.82)",
+            zIndex: 65,
+            padding: "2rem 2rem 5rem",
+            background: "rgba(0,0,0,0.88)",
             backdropFilter: "blur(12px)",
             borderTop: "1px solid rgba(252,221,9,0.3)",
             textAlign: "center",
@@ -169,7 +165,7 @@ export default function EmotionalMode() {
           position: "fixed",
           bottom: "1.5rem",
           right: "1.5rem",
-          zIndex: 50,
+          zIndex: 70,
           padding: "10px 18px",
           borderRadius: "12px",
           background: active

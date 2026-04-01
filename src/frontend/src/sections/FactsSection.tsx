@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import AmharicNarration from "../components/AmharicNarration";
 
 const facts = [
   {
@@ -172,6 +173,16 @@ export default function FactsSection() {
         </div>
 
         {/* Counters grid */}
+        {/* BATTLE Narration */}
+        <AmharicNarration
+          lines={[
+            "የካቲት 23 1888 ዓ.ም",
+            "ጦርነት ጀመረ።",
+            "ሰይፍ ከሰይፍ ተገናኘ።",
+            "እነሱ ለነጻነት ተዋጉ።",
+          ]}
+          className="mb-12"
+        />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {facts.map((fact, i) => (
             <CounterCard key={fact.label} fact={fact} index={i} />

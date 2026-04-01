@@ -1,4 +1,5 @@
 import { Globe, Shield, Sword } from "lucide-react";
+import AmharicNarration from "../components/AmharicNarration";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const editorialQuotes = [
@@ -102,6 +103,12 @@ export default function WhyAdwaSection() {
           </div>
         </FadeBlock>
 
+        {/* VICTORY Narration */}
+        <AmharicNarration
+          lines={["ኢትዮጵያ ድል አደረገች።", "ታሪክ ተቀየረ።"]}
+          className="mb-12"
+        />
+
         {/* Editorial Quotes */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           {editorialQuotes.map((q, i) => (
@@ -163,6 +170,12 @@ export default function WhyAdwaSection() {
             </FadeBlock>
           ))}
         </div>
+
+        {/* IMPACT Narration */}
+        <AmharicNarration
+          lines={["አድዋ ምልክት ነው።", "ነጻነት ይቻላል።", "አፍሪካ ትነሳለች።"]}
+          className="mb-12"
+        />
 
         {/* Impact Cards */}
         <FadeBlock>

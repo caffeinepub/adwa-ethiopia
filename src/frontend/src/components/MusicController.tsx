@@ -14,7 +14,7 @@ export default function MusicController() {
         position: "fixed",
         bottom: "6rem",
         right: "1.5rem",
-        zIndex: 50,
+        zIndex: 75,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

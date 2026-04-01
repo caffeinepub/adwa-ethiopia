@@ -1,3 +1,4 @@
+import AmharicNarration from "../components/AmharicNarration";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const heroes = [
@@ -209,6 +210,12 @@ export default function HeroesSection() {
             </p>
           </div>
         </FadeBlock>
+
+        {/* UNITY Narration */}
+        <AmharicNarration
+          lines={["ከተራራዎች፣", "ከሜዳዎች፣", "ከአገር ሁሉ፣", "መጡ።", "እንደ አንድ ሆነው።"]}
+          className="mb-12"
+        />
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">

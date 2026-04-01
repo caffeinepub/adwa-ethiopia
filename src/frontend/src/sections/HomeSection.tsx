@@ -1,6 +1,7 @@
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import AmharicNarration from "../components/AmharicNarration";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const quotes = [
@@ -387,6 +388,19 @@ export default function HomeSection() {
             />
           </a>
         </motion.div>
+
+        {/* OPENING Narration */}
+        <AmharicNarration
+          lines={[
+            "1896…",
+            "አፍሪካ በመከፋፈል ዘመን፣",
+            "አንድ ሀገር ቆመች።",
+            "ኢትዮጵያ… አልተንቀሳቀሰችም።",
+            "ይህ ታሪክ ብቻ አይደለም።",
+            "ይህ… አድዋ ነው።",
+          ]}
+          className="mt-10"
+        />
 
         {/* Gold divider */}
         <motion.div

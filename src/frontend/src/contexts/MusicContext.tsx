@@ -1,26 +1,16 @@
 import {
   type ReactNode,
   createContext,
+  useCallback,
   useContext,
+  useEffect,
   useRef,
   useState,
 } from "react";
 
 declare global {
   interface Window {
-    YT: {
-      Player: new (
-        el: HTMLElement | string,
-        options: {
-          videoId: string;
-          playerVars?: Record<string, number | string>;
-          events?: {
-            onReady?: (event: { target: YTPlayer }) => void;
-            onStateChange?: (event: { data: number }) => void;
-          };
-        },
-      ) => YTPlayer;
-    };
+    YT: { Player: new (id: string, opts: object) => YTPlayer };
     onYouTubeIframeAPIReady: (() => void) | undefined;
   }
 }
@@ -28,9 +18,8 @@ declare global {
 interface YTPlayer {
   playVideo(): void;
   pauseVideo(): void;
-  setVolume(volume: number): void;
+  setVolume(v: number): void;
   getPlayerState(): number;
-  destroy(): void;
 }
 
 interface MusicContextType {
@@ -47,18 +36,10 @@ export function MusicProvider({ children }: { children: ReactNode }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const playerRef = useRef<YTPlayer | null>(null);
   const startedRef = useRef(false);
-  const containerRef = useRef<HTMLDivElement | null>(null);
 
-  function createPlayer() {
-    if (!containerRef.current) {
-      const div = document.createElement("div");
-      div.style.cssText =
-        "position:fixed;top:-1px;left:-1px;width:1px;height:1px;opacity:0;pointer-events:none;";
-      document.body.appendChild(div);
-      containerRef.current = div;
-    }
-
-    playerRef.current = new window.YT.Player(containerRef.current, {
+  const createPlayer = useCallback(() => {
+    if (!document.getElementById("yt-music-player")) return;
+    playerRef.current = new window.YT.Player("yt-music-player", {
       videoId: "SUdDn_sUTgo",
       playerVars: {
         autoplay: 1,
@@ -72,28 +53,20 @@ export function MusicProvider({ children }: { children: ReactNode }) {
         rel: 0,
       },
       events: {
-        onReady: (event) => {
-          event.target.setVolume(25);
+        onReady: (event: { target: YTPlayer }) => {
+          event.target.setVolume(20);
           event.target.playVideo();
           setIsPlaying(true);
           setIsMuted(false);
         },
       },
     });
-  }
+  }, []);
 
-  function loadYTApi() {
-    if (document.getElementById("yt-iframe-api")) return;
-    const script = document.createElement("script");
-    script.id = "yt-iframe-api";
-    script.src = "https://www.youtube.com/iframe_api";
-    document.head.appendChild(script);
-  }
-
-  function startMusic() {
+  const startMusic = useCallback(() => {
     if (startedRef.current) {
       if (playerRef.current) {
-        playerRef.current.setVolume(25);
+        playerRef.current.setVolume(20);
         playerRef.current.playVideo();
       }
       setIsMuted(false);
@@ -104,33 +77,63 @@ export function MusicProvider({ children }: { children: ReactNode }) {
     if (window.YT?.Player) {
       createPlayer();
     } else {
-      window.onYouTubeIframeAPIReady = () => {
-        createPlayer();
-      };
-      loadYTApi();
+      window.onYouTubeIframeAPIReady = createPlayer;
+      if (!document.getElementById("yt-iframe-api")) {
+        const s = document.createElement("script");
+        s.id = "yt-iframe-api";
+        s.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(s);
+      }
     }
-  }
+  }, [createPlayer]);
 
-  function toggleMute() {
+  // Auto-start on first user interaction
+  useEffect(() => {
+    function onInteraction() {
+      if (!startedRef.current) startMusic();
+    }
+    document.addEventListener("click", onInteraction, { once: true });
+    document.addEventListener("scroll", onInteraction, { once: true });
+    document.addEventListener("touchstart", onInteraction, { once: true });
+    return () => {
+      document.removeEventListener("click", onInteraction);
+      document.removeEventListener("scroll", onInteraction);
+      document.removeEventListener("touchstart", onInteraction);
+    };
+  }, [startMusic]);
+
+  const toggleMute = useCallback(() => {
     if (!startedRef.current) {
       startMusic();
       return;
     }
     if (!playerRef.current) return;
-
     if (isMuted) {
-      playerRef.current.setVolume(25);
+      playerRef.current.setVolume(20);
       setIsMuted(false);
     } else {
       playerRef.current.setVolume(0);
       setIsMuted(true);
     }
-  }
+  }, [isMuted, startMusic]);
 
   return (
     <MusicContext.Provider
       value={{ isMuted, isPlaying, toggleMute, startMusic }}
     >
+      {/* Hidden YT player target – must be in DOM before createPlayer() is called */}
+      <div
+        id="yt-music-player"
+        style={{
+          position: "fixed",
+          top: -1,
+          left: -1,
+          width: 1,
+          height: 1,
+          opacity: 0,
+          pointerEvents: "none",
+        }}
+      />
       {children}
     </MusicContext.Provider>
   );

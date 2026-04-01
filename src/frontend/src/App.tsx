@@ -1,8 +1,8 @@
 import { Toaster } from "@/components/ui/sonner";
 import { useState } from "react";
 import { SiFacebook, SiWhatsapp, SiX } from "react-icons/si";
+import CinematicIntro from "./components/CinematicIntro";
 import EmotionalMode from "./components/EmotionalMode";
-import EntryPopup from "./components/EntryPopup";
 import MusicController from "./components/MusicController";
 import TopNav from "./components/TopNav";
 import { MusicProvider } from "./contexts/MusicContext";
@@ -52,7 +52,7 @@ export default function App() {
   return (
     <MusicProvider>
       <div className="min-h-screen bg-background">
-        {!popupDismissed && <EntryPopup onDismiss={handlePopupDismiss} />}
+        {!popupDismissed && <CinematicIntro onDismiss={handlePopupDismiss} />}
         <TopNav />
         <main>
           <section id="home">
@@ -106,7 +106,6 @@ export default function App() {
           className="text-center px-4 border-t border-border"
           style={{ paddingTop: "4rem", paddingBottom: "3rem" }}
         >
-          {/* Tricolor stripe */}
           <div
             className="eth-stripe mb-8 mx-auto"
             style={{ height: "3px", maxWidth: "120px" }}
@@ -116,7 +115,22 @@ export default function App() {
             <div className="s-red" />
           </div>
 
-          {/* Footer quote */}
+          {/* Final Amharic narration — FINAL script */}
+          <div
+            className="mb-10"
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              fontStyle: "italic",
+              color: "rgba(212,175,55,0.85)",
+              fontSize: "clamp(1rem,2.5vw,1.2rem)",
+              lineHeight: 2,
+              letterSpacing: "0.05em",
+            }}
+          >
+            <p style={{ margin: 0 }}>{"አድዋ ዛሬም ትኖራለች።"}</p>
+            <p style={{ margin: 0 }}>{"አድዋ… ለዘላለም ነው።"}</p>
+          </div>
+
           <p
             className="font-display text-xl md:text-2xl italic font-bold mb-8"
             style={{
@@ -127,7 +141,6 @@ export default function App() {
             &ldquo;Adwa is a symbol of freedom for all Africa&rdquo;
           </p>
 
-          {/* Social share buttons */}
           <div className="flex justify-center gap-4 mb-8">
             <a
               href={`https://twitter.com/intent/tweet?text=${shareText}&url=${siteUrl}`}
@@ -213,7 +226,7 @@ export default function App() {
           </div>
 
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} by Helen Metekiya
+            &copy; {new Date().getFullYear()} by Helen Metekiya
           </p>
         </footer>
 

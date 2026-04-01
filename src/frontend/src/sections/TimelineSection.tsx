@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import AmharicNarration from "../components/AmharicNarration";
 
 const steps = [
   {
@@ -255,6 +256,17 @@ export default function TimelineSection() {
                 "linear-gradient(to bottom, #078930, #FCDD09, #DA121A, #078930, #FCDD09)",
               opacity: 0.5,
             }}
+          />
+          {/* BEFORE WAR Narration */}
+          <AmharicNarration
+            lines={[
+              "ከባሕር ማዶ፣",
+              "ኢጣሊያ ኢትዮጵያን ለመቆጣጠር መጣች።",
+              "በሽርሽር… በኃይል…",
+              "ጥሪ ተደረገ።",
+              "ሕዝቡም ተነሳ።",
+            ]}
+            className="mb-12"
           />
           {steps.map((step, i) => (
             <TimelineCard key={step.title} step={step} index={i} />
