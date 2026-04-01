@@ -11,7 +11,7 @@ interface Question {
   options: string[];
   correctIndex: number;
 }
-const TIMER_SECONDS = 20;
+const TIMER_SECONDS = 5;
 
 const questions: Question[] = [
   {
@@ -188,7 +188,7 @@ export default function QuizSection() {
 
   const timerPct = (timeLeft / TIMER_SECONDS) * 100;
   const timerColor =
-    timeLeft > 10 ? "#078930" : timeLeft > 5 ? "#FCDD09" : "#DA121A";
+    timeLeft > 3 ? "#078930" : timeLeft > 1 ? "#FCDD09" : "#DA121A";
 
   return (
     <div className="py-20 px-6" style={{ background: "oklch(0.12 0.01 250)" }}>
@@ -339,8 +339,8 @@ export default function QuizSection() {
                     const isSelected = selected === idx;
                     const isCorrect = idx === questions[currentQ].correctIndex;
                     const revealed = selected !== null;
-                    let bg = "white";
-                    let border = "oklch(0.28 0.02 250)";
+                    let bg = "oklch(0.18 0.015 250)";
+                    let border = "oklch(0.35 0.02 250)";
                     if (revealed) {
                       if (isCorrect) {
                         bg = "#e8f7ec";
@@ -366,7 +366,12 @@ export default function QuizSection() {
                       >
                         <span
                           className="w-7 h-7 rounded-full border flex items-center justify-center text-xs font-bold shrink-0"
-                          style={{ borderColor: border }}
+                          style={{
+                            borderColor: border,
+                            background: revealed
+                              ? undefined
+                              : "oklch(0.22 0.015 250)",
+                          }}
                         >
                           {String.fromCharCode(65 + idx)}
                         </span>

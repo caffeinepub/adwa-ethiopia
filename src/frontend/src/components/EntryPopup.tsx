@@ -355,18 +355,6 @@ export default function EntryPopup({ onDismiss }: EntryPopupProps) {
             <div style={{ padding: "2rem 2rem 2.25rem" }}>
               {/* Title */}
               <div style={{ textAlign: "center", marginBottom: "1.5rem" }}>
-                <div
-                  style={{
-                    fontSize: "0.75rem",
-                    letterSpacing: "0.2em",
-                    textTransform: "uppercase",
-                    color: "#1a6b3a",
-                    marginBottom: "0.5rem",
-                    fontFamily: "'Plus Jakarta Sans', sans-serif",
-                  }}
-                >
-                  ኢትዮጵያ ትቅደም
-                </div>
                 <h2
                   style={{
                     fontFamily: "'Playfair Display', Georgia, serif",

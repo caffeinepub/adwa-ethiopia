@@ -2,7 +2,7 @@ import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const keyFacts = [
   { label: "Date", value: "March 1, 1896" },
-  { label: "Location", value: "Adwa, Tigray, Ethiopia" },
+  { label: "Location", value: "Adwa, Ethiopia" },
   { label: "Outcome", value: "Ethiopian Victory" },
   {
     label: "Significance",
