@@ -3,32 +3,49 @@ import { useMusicContext } from "../contexts/MusicContext";
 
 const QUOTES = [
   {
-    text: "They gave their lives so Africa could live free.",
+    en: "They gave their lives so Africa could live free.",
+    am: "ለአፍሪካ ነፃነት ሕይወታቸውን ሰጡ።",
     author: "— Battle of Adwa, 1896",
   },
   {
-    text: "In the dust of Adwa, a continent found its dignity.",
+    en: "In the dust of Adwa, a continent found its dignity.",
+    am: "በዓድዋ አቧራ ውስጥ አህጉር ክብሯን አገኘች።",
     author: "— Ethiopian Heritage",
   },
   {
-    text: "One million hearts, one victory, one eternal dawn.",
+    en: "One million hearts, one victory, one eternal dawn.",
+    am: "አንድ ሚሊዮን ልቦች፣ አንድ ድል፣ አንድ ዘለዓለማዊ ንጋት።",
     author: "— March 1, 1896",
   },
   {
-    text: "Taytu stood. Menelik led. Ethiopia endured. Africa remembered.",
+    en: "Taytu stood. Menelik led. Ethiopia endured. Africa remembered.",
+    am: "ጣይቱ ቆመች። ምኒልክ መራ። ኢትዮጵያ ዘለቀች። አፍሪካ አስታወሰች።",
     author: "— Adwa Victory",
   },
   {
-    text: "The blood of Adwa watered the seeds of independence across a continent.",
+    en: "The blood of Adwa watered the seeds of independence across a continent.",
+    am: "የዓድዋ ደም በአህጉሪቱ ላይ የነፃነት ዘሮችን አጠጣ።",
     author: "— Pan-African Legacy",
   },
   {
-    text: "Victory is not the end of sacrifice — it is sacrifice made eternal.",
+    en: "Victory is not the end of sacrifice — it is sacrifice made eternal.",
+    am: "ድል የመስዋዕትነት መጨረሻ አይደለም — መስዋዕትነትን ዘለዓለማዊ ያደርጋል።",
     author: "— Heroes of Adwa",
   },
   {
-    text: "March 1, 1896. The day the world learned: Africa will not bow.",
+    en: "March 1, 1896. The day the world learned: Africa will not bow.",
+    am: "መጋቢት ፳፫ ቀን ፲፰፻፹፰ ዓ.ም. — ዓለም የተማረ ቀን፦ አፍሪካ አትደፋም።",
     author: "— Battle of Adwa",
+  },
+  {
+    en: "From the mountains of Adwa, a new Africa was born.",
+    am: "ከዓድዋ ተራሮች አዲስ አፍሪካ ተወለደች።",
+    author: "— Emperor Menelik II",
+  },
+  {
+    en: "Empress Taytu's courage shattered the chains of colonialism.",
+    am: "እቴጌ ጣይቱ ድፍረት የቅኝ ግዛት ሰንሰለቶችን ሰበረ።",
+    author: "— Empress Taytu Betul",
   },
 ];
 
@@ -96,21 +113,38 @@ export default function EmotionalMode() {
             pointerEvents: "none",
           }}
         >
+          {/* English quote */}
           <p
             style={{
               fontFamily: '"Playfair Display", Georgia, serif',
               fontSize: "clamp(1rem, 2.5vw, 1.4rem)",
               fontStyle: "italic",
               color: "#FCDD09",
-              marginBottom: "0.5rem",
+              marginBottom: "0.6rem",
               opacity: quoteVisible ? 1 : 0,
               transition: "opacity 1s ease",
               textShadow: "0 0 40px rgba(252,221,9,0.4)",
               lineHeight: 1.6,
             }}
           >
-            &ldquo;{quote.text}&rdquo;
+            &ldquo;{quote.en}&rdquo;
           </p>
+          {/* Amharic quote */}
+          <p
+            style={{
+              fontFamily: "'Noto Sans Ethiopic', 'Nyala', serif",
+              fontSize: "clamp(0.85rem, 2vw, 1.15rem)",
+              color: "rgba(252,221,9,0.75)",
+              marginBottom: "0.75rem",
+              opacity: quoteVisible ? 1 : 0,
+              transition: "opacity 1s ease",
+              lineHeight: 1.7,
+              letterSpacing: "0.02em",
+            }}
+          >
+            {quote.am}
+          </p>
+          {/* Author */}
           <p
             style={{
               fontSize: "0.8rem",

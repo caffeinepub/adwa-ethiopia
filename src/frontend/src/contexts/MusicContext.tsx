@@ -6,6 +6,33 @@ import {
   useState,
 } from "react";
 
+declare global {
+  interface Window {
+    YT: {
+      Player: new (
+        el: HTMLElement | string,
+        options: {
+          videoId: string;
+          playerVars?: Record<string, number | string>;
+          events?: {
+            onReady?: (event: { target: YTPlayer }) => void;
+            onStateChange?: (event: { data: number }) => void;
+          };
+        },
+      ) => YTPlayer;
+    };
+    onYouTubeIframeAPIReady: (() => void) | undefined;
+  }
+}
+
+interface YTPlayer {
+  playVideo(): void;
+  pauseVideo(): void;
+  setVolume(volume: number): void;
+  getPlayerState(): number;
+  destroy(): void;
+}
+
 interface MusicContextType {
   isMuted: boolean;
   isPlaying: boolean;
@@ -18,75 +45,70 @@ const MusicContext = createContext<MusicContextType | null>(null);
 export function MusicProvider({ children }: { children: ReactNode }) {
   const [isMuted, setIsMuted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioCtxRef = useRef<AudioContext | null>(null);
-  const masterGainRef = useRef<GainNode | null>(null);
+  const playerRef = useRef<YTPlayer | null>(null);
   const startedRef = useRef(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  function createPlayer() {
+    if (!containerRef.current) {
+      const div = document.createElement("div");
+      div.style.cssText =
+        "position:fixed;top:-1px;left:-1px;width:1px;height:1px;opacity:0;pointer-events:none;";
+      document.body.appendChild(div);
+      containerRef.current = div;
+    }
+
+    playerRef.current = new window.YT.Player(containerRef.current, {
+      videoId: "SUdDn_sUTgo",
+      playerVars: {
+        autoplay: 1,
+        loop: 1,
+        playlist: "SUdDn_sUTgo",
+        controls: 0,
+        disablekb: 1,
+        fs: 0,
+        iv_load_policy: 3,
+        modestbranding: 1,
+        rel: 0,
+      },
+      events: {
+        onReady: (event) => {
+          event.target.setVolume(25);
+          event.target.playVideo();
+          setIsPlaying(true);
+          setIsMuted(false);
+        },
+      },
+    });
+  }
+
+  function loadYTApi() {
+    if (document.getElementById("yt-iframe-api")) return;
+    const script = document.createElement("script");
+    script.id = "yt-iframe-api";
+    script.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(script);
+  }
 
   function startMusic() {
     if (startedRef.current) {
-      if (masterGainRef.current && audioCtxRef.current) {
-        masterGainRef.current.gain.setTargetAtTime(
-          0.18,
-          audioCtxRef.current.currentTime,
-          0.5,
-        );
+      if (playerRef.current) {
+        playerRef.current.setVolume(25);
+        playerRef.current.playVideo();
       }
       setIsMuted(false);
       return;
     }
     startedRef.current = true;
 
-    const ctx = new AudioContext();
-    audioCtxRef.current = ctx;
-
-    const master = ctx.createGain();
-    master.gain.value = 0;
-    master.connect(ctx.destination);
-    masterGainRef.current = master;
-
-    // Fade in
-    master.gain.setTargetAtTime(0.18, ctx.currentTime, 2);
-
-    // Ethiopian pentatonic notes: A2, C3, D3, E3, G3, A3
-    const notes = [110, 130.8, 146.8, 164.8, 196, 220];
-    const types: OscillatorType[] = [
-      "sine",
-      "triangle",
-      "sine",
-      "triangle",
-      "sine",
-      "sine",
-    ];
-    const gains = [0.5, 0.3, 0.4, 0.25, 0.3, 0.2];
-
-    notes.forEach((freq, i) => {
-      const osc = ctx.createOscillator();
-      osc.type = types[i];
-      osc.frequency.value = freq;
-
-      osc.frequency.setValueAtTime(freq, ctx.currentTime);
-      osc.frequency.linearRampToValueAtTime(freq * 1.002, ctx.currentTime + 8);
-      osc.frequency.linearRampToValueAtTime(freq, ctx.currentTime + 16);
-
-      const gain = ctx.createGain();
-      gain.gain.value = gains[i] * 0.12;
-
-      const lfo = ctx.createOscillator();
-      lfo.frequency.value = 0.06 + i * 0.01;
-      lfo.type = "sine";
-      const lfoGain = ctx.createGain();
-      lfoGain.gain.value = 0.03;
-      lfo.connect(lfoGain);
-      lfoGain.connect(gain.gain);
-      lfo.start();
-
-      osc.connect(gain);
-      gain.connect(master);
-      osc.start();
-    });
-
-    setIsPlaying(true);
-    setIsMuted(false);
+    if (window.YT?.Player) {
+      createPlayer();
+    } else {
+      window.onYouTubeIframeAPIReady = () => {
+        createPlayer();
+      };
+      loadYTApi();
+    }
   }
 
   function toggleMute() {
@@ -94,21 +116,13 @@ export function MusicProvider({ children }: { children: ReactNode }) {
       startMusic();
       return;
     }
-    if (!masterGainRef.current || !audioCtxRef.current) return;
+    if (!playerRef.current) return;
 
     if (isMuted) {
-      masterGainRef.current.gain.setTargetAtTime(
-        0.18,
-        audioCtxRef.current.currentTime,
-        0.5,
-      );
+      playerRef.current.setVolume(25);
       setIsMuted(false);
     } else {
-      masterGainRef.current.gain.setTargetAtTime(
-        0,
-        audioCtxRef.current.currentTime,
-        0.5,
-      );
+      playerRef.current.setVolume(0);
       setIsMuted(true);
     }
   }
