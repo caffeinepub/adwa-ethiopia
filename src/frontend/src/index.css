@@ -19,51 +19,48 @@
 @layer base {
   :root {
     --radius: 0.75rem;
-    /* Warm cream background: #F4EFE3 → oklch(0.95 0.018 80) */
-    --background: 0.95 0.018 80;
-    /* Text on light: #2B2B2B → oklch(0.22 0 0) */
-    --foreground: 0.22 0 0;
-    /* White card */
+    --background: 0.97 0.008 80;
+    --foreground: 0.18 0 0;
     --card: 1 0 0;
-    --card-foreground: 0.22 0 0;
+    --card-foreground: 0.18 0 0;
     --popover: 1 0 0;
-    --popover-foreground: 0.22 0 0;
-    /* Primary dark brown: #2A1A12 → oklch(0.20 0.04 45) */
-    --primary: 0.2 0.04 45;
-    /* Text on dark: #E7DED0 → oklch(0.90 0.015 80) */
-    --primary-foreground: 0.9 0.015 80;
-    --secondary: 0.92 0.02 80;
-    --secondary-foreground: 0.2 0.04 45;
-    --muted: 0.92 0.02 80;
+    --popover-foreground: 0.18 0 0;
+    /* Ethiopian green: #078930 */
+    --primary: 0.52 0.18 145;
+    --primary-foreground: 1 0 0;
+    --secondary: 0.94 0.02 80;
+    --secondary-foreground: 0.18 0 0;
+    --muted: 0.94 0.01 80;
     --muted-foreground: 0.5 0.02 80;
-    /* Gold accent: #D2A23B → oklch(0.72 0.12 70) */
-    --accent: 0.72 0.12 70;
-    --accent-foreground: 0.2 0.04 45;
-    --destructive: 0.577 0.245 27.325;
-    --destructive-foreground: 0.985 0 0;
-    /* Light border */
-    --border: 0.87 0.02 80;
-    --input: 0.87 0.02 80;
-    --ring: 0.72 0.12 70;
-    /* Color accents */
-    --gold: 0.72 0.12 70;
-    --maroon: 0.35 0.13 20;
-    --deep-green: 0.45 0.12 155;
-    --dark-brown: 0.2 0.04 45;
-    --tan: 0.72 0.06 70;
-    --chart-1: 0.646 0.222 41.116;
-    --chart-2: 0.6 0.118 184.704;
-    --chart-3: 0.398 0.07 227.392;
-    --chart-4: 0.828 0.189 84.429;
-    --chart-5: 0.769 0.188 70.08;
-    --sidebar: 0.95 0.018 80;
-    --sidebar-foreground: 0.22 0 0;
-    --sidebar-primary: 0.2 0.04 45;
-    --sidebar-primary-foreground: 0.9 0.015 80;
-    --sidebar-accent: 0.92 0.02 80;
-    --sidebar-accent-foreground: 0.2 0.04 45;
-    --sidebar-border: 0.87 0.02 80;
-    --sidebar-ring: 0.72 0.12 70;
+    /* Ethiopian yellow: #FCDD09 */
+    --accent: 0.88 0.18 95;
+    --accent-foreground: 0.18 0 0;
+    /* Ethiopian red: #DA121A */
+    --destructive: 0.48 0.22 27;
+    --destructive-foreground: 1 0 0;
+    --border: 0.9 0.01 80;
+    --input: 0.9 0.01 80;
+    --ring: 0.52 0.18 145;
+    /* Custom tokens */
+    --eth-green: oklch(0.52 0.18 145);
+    --eth-yellow: oklch(0.88 0.18 95);
+    --eth-red: oklch(0.48 0.22 27);
+    --dark-bg: oklch(0.14 0.04 45);
+    --dark-card: oklch(0.19 0.04 45);
+    --gold: oklch(0.72 0.12 70);
+    --chart-1: 0.52 0.18 145;
+    --chart-2: 0.88 0.18 95;
+    --chart-3: 0.48 0.22 27;
+    --chart-4: 0.72 0.12 70;
+    --chart-5: 0.65 0.15 80;
+    --sidebar: 0.97 0.008 80;
+    --sidebar-foreground: 0.18 0 0;
+    --sidebar-primary: 0.52 0.18 145;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.94 0.02 80;
+    --sidebar-accent-foreground: 0.18 0 0;
+    --sidebar-border: 0.9 0.01 80;
+    --sidebar-ring: 0.52 0.18 145;
   }
 
   * {
@@ -73,24 +70,45 @@
     @apply bg-background text-foreground;
     font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Playfair Display", Georgia, serif;
+  }
 }
 
-/* Mobile-first outer wrapper */
-.app-shell {
-  background-color: oklch(0.16 0.04 45);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+/* Scroll animation */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.app-frame {
-  width: 100%;
-  max-width: 430px;
-  min-height: 100vh;
-  background-color: oklch(0.95 0.018 80);
-  position: relative;
+/* Ethiopian flag stripe */
+.eth-stripe {
+  height: 4px;
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
+}
+.eth-stripe > .s-green {
+  flex: 1;
+  background: #078930;
+}
+.eth-stripe > .s-yellow {
+  flex: 1;
+  background: #fcdd09;
+}
+.eth-stripe > .s-red {
+  flex: 1;
+  background: #da121a;
+}
+
+/* Section spacing */
+section {
+  scroll-margin-top: 72px;
 }

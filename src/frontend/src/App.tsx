@@ -1,19 +1,4 @@
 import { Toaster } from "@/components/ui/sonner";
-import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
-import BottomNav from "./components/BottomNav";
-import AIChatTab from "./tabs/AIChatTab";
-import AboutTab from "./tabs/AboutTab";
-import CommentsTab from "./tabs/CommentsTab";
-import DonationTab from "./tabs/DonationTab";
-import GalleryTab from "./tabs/GalleryTab";
-import HistoryTab from "./tabs/HistoryTab";
-import HomeTab from "./tabs/HomeTab";
-import LearnTab from "./tabs/LearnTab";
-import MusicTab from "./tabs/MusicTab";
-import QuizTab from "./tabs/QuizTab";
-import VideoTab from "./tabs/VideoTab";
-
 export type Tab =
   | "home"
   | "learn"
@@ -27,55 +12,78 @@ export type Tab =
   | "about"
   | "comments";
 
+import TopNav from "./components/TopNav";
+import AboutSection from "./sections/AboutSection";
+import ChatSection from "./sections/ChatSection";
+import CommentsSection from "./sections/CommentsSection";
+import DocumentarySection from "./sections/DocumentarySection";
+import DonationSection from "./sections/DonationSection";
+import GallerySection from "./sections/GallerySection";
+import HistorySection from "./sections/HistorySection";
+import HomeSection from "./sections/HomeSection";
+import LearnSection from "./sections/LearnSection";
+import MusicSection from "./sections/MusicSection";
+import QuizSection from "./sections/QuizSection";
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState<Tab>("home");
-
-  const renderTab = () => {
-    switch (activeTab) {
-      case "home":
-        return <HomeTab onNavigate={setActiveTab} />;
-      case "learn":
-        return <LearnTab />;
-      case "quiz":
-        return <QuizTab />;
-      case "chat":
-        return <AIChatTab />;
-      case "gallery":
-        return <GalleryTab />;
-      case "history":
-        return <HistoryTab />;
-      case "video":
-        return <VideoTab />;
-      case "music":
-        return <MusicTab />;
-      case "donation":
-        return <DonationTab />;
-      case "about":
-        return <AboutTab />;
-      case "comments":
-        return <CommentsTab />;
-    }
-  };
-
   return (
-    <div className="app-shell">
-      <div className="app-frame">
-        <main className="flex-1 overflow-y-auto pb-20">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-            >
-              {renderTab()}
-            </motion.div>
-          </AnimatePresence>
-        </main>
-        <BottomNav activeTab={activeTab} onTabChange={setActiveTab} />
-        <Toaster />
-      </div>
+    <div
+      className="min-h-screen"
+      style={{ background: "oklch(0.97 0.008 80)" }}
+    >
+      <TopNav />
+      <main>
+        <section id="home">
+          <HomeSection />
+        </section>
+        <section id="learn">
+          <LearnSection />
+        </section>
+        <section id="history">
+          <HistorySection />
+        </section>
+        <section id="gallery">
+          <GallerySection />
+        </section>
+        <section id="quiz">
+          <QuizSection />
+        </section>
+        <section id="chat">
+          <ChatSection />
+        </section>
+        <section id="documentary">
+          <DocumentarySection />
+        </section>
+        <section id="music">
+          <MusicSection />
+        </section>
+        <section id="donation">
+          <DonationSection />
+        </section>
+        <section id="comments">
+          <CommentsSection />
+        </section>
+        <section id="about">
+          <AboutSection />
+        </section>
+      </main>
+      <footer
+        className="text-center py-8 px-4 border-t"
+        style={{ borderColor: "oklch(0.88 0.01 80)" }}
+      >
+        <div
+          className="eth-stripe mb-6"
+          style={{ height: "3px", maxWidth: "120px", margin: "0 auto 24px" }}
+        >
+          <div className="s-green" />
+          <div className="s-yellow" />
+          <div className="s-red" />
+        </div>
+        <p className="text-sm" style={{ color: "oklch(0.50 0.02 80)" }}>
+          © 2026 by Helen Metekiya
+        </p>
+      </footer>
+      <Toaster />
     </div>
   );
 }
