@@ -1,0 +1,17 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Adwa Ethiopia",
+      "weight": "Bolder",
+      "size": "Medium"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Battle of Adwa 1896",
+      "wrap": true
+    }
+  ]
+}

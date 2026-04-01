@@ -22,25 +22,25 @@
   },
   "icons": [
     {
-      "src": "/assets/generated/icon-192x192.dim_192x192.png",
+      "src": "/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/assets/generated/icon-512x512.dim_512x512.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/assets/generated/icon-192x192.dim_192x192.png",
+      "src": "/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/assets/generated/icon-512x512.dim_512x512.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
@@ -48,14 +48,14 @@
   ],
   "screenshots": [
     {
-      "src": "/assets/generated/screenshot-wide.dim_1280x720.png",
+      "src": "/screenshot-wide.png",
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Adwa Ethiopia Homepage - Desktop"
     },
     {
-      "src": "/assets/generated/screenshot-narrow.dim_390x844.png",
+      "src": "/screenshot-narrow.png",
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
@@ -84,27 +84,52 @@
       }
     }
   ],
+  "widgets": [
+    {
+      "name": "Adwa Ethiopia",
+      "description": "Learn about the Battle of Adwa",
+      "tag": "adwa-widget",
+      "ms_ac_template": "/widget-template.json",
+      "data": "/widget-data.json",
+      "type": "application/json",
+      "screenshots": [
+        {
+          "src": "/screenshot-narrow.png",
+          "sizes": "390x844",
+          "label": "Adwa Ethiopia Widget"
+        }
+      ],
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ],
+      "auth": false,
+      "update": 86400
+    }
+  ],
   "shortcuts": [
     {
       "name": "Heroes of Adwa",
       "short_name": "Heroes",
       "url": "/#heroes",
       "description": "View the Heroes of Adwa section",
-      "icons": [{ "src": "/assets/generated/icon-192x192.dim_192x192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "History Quiz",
       "short_name": "Quiz",
       "url": "/#quiz",
       "description": "Take the Adwa history quiz",
-      "icons": [{ "src": "/assets/generated/icon-192x192.dim_192x192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Gallery",
       "short_name": "Gallery",
       "url": "/#gallery",
       "description": "View the Adwa gallery",
-      "icons": [{ "src": "/assets/generated/icon-192x192.dim_192x192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     }
   ],
   "share_target": {
