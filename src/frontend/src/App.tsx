@@ -1,17 +1,6 @@
 import { Toaster } from "@/components/ui/sonner";
-export type Tab =
-  | "home"
-  | "learn"
-  | "quiz"
-  | "chat"
-  | "gallery"
-  | "history"
-  | "video"
-  | "music"
-  | "donation"
-  | "about"
-  | "comments";
-
+import { useState } from "react";
+import EntryPopup from "./components/EntryPopup";
 import TopNav from "./components/TopNav";
 import AboutSection from "./sections/AboutSection";
 import ChatSection from "./sections/ChatSection";
@@ -26,9 +15,32 @@ import LearnSection from "./sections/LearnSection";
 import MusicSection from "./sections/MusicSection";
 import QuizSection from "./sections/QuizSection";
 
+export type Tab =
+  | "home"
+  | "learn"
+  | "quiz"
+  | "chat"
+  | "gallery"
+  | "history"
+  | "video"
+  | "music"
+  | "donation"
+  | "about"
+  | "comments";
+
 export default function App() {
+  const [popupDismissed, setPopupDismissed] = useState<boolean>(
+    () => localStorage.getItem("adwa_entry_done") === "true",
+  );
+
+  function handlePopupDismiss() {
+    localStorage.setItem("adwa_entry_done", "true");
+    setPopupDismissed(true);
+  }
+
   return (
     <div className="min-h-screen bg-background">
+      {!popupDismissed && <EntryPopup onDismiss={handlePopupDismiss} />}
       <TopNav />
       <main>
         <section id="home">
