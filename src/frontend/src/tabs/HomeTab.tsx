@@ -3,7 +3,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Clock,
-  Heart,
   HelpCircle,
   Image,
   MessageCircle,
@@ -76,14 +75,6 @@ const navCards = [
     icon: <Music size={28} />,
     accentColor: "oklch(0.60 0.15 295)",
     accentLabel: "LISTEN",
-  },
-  {
-    id: "donation" as Tab,
-    label: "Donation",
-    description: "Support cultural education efforts",
-    icon: <Heart size={28} />,
-    accentColor: "oklch(0.55 0.20 25)",
-    accentLabel: "GIVE",
   },
   {
     id: "comments" as Tab,

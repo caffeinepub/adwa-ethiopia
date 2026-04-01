@@ -3,17 +3,16 @@ import { useState } from "react";
 
 const navLinks = [
   { href: "#home", label: "Home" },
-  { href: "#learn", label: "Learn" },
-  { href: "#history", label: "History" },
+  { href: "#timeline", label: "Timeline" },
   { href: "#heroes", label: "Heroes" },
-  { href: "#gallery", label: "Gallery" },
+  { href: "#facts", label: "Facts" },
+  { href: "#map", label: "Map" },
+  { href: "#why", label: "Why Adwa" },
+  { href: "#history", label: "History" },
   { href: "#quiz", label: "Quiz" },
   { href: "#chat", label: "AI Chat" },
-  { href: "#documentary", label: "Documentary" },
+  { href: "#gallery", label: "Gallery" },
   { href: "#music", label: "Music" },
-  { href: "#donation", label: "Donation" },
-  { href: "#comments", label: "Comments" },
-  { href: "#about", label: "About" },
 ];
 
 export default function TopNav() {
@@ -80,6 +79,7 @@ export default function TopNav() {
           className="lg:hidden p-2 rounded-btn text-secondary"
           onClick={() => setOpen(!open)}
           aria-label="Menu"
+          data-ocid="nav.mobile.toggle"
         >
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
