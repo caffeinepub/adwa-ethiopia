@@ -107,7 +107,7 @@ export default function DonationSection() {
   const [modal, setModal] = useState<ModalType>(null);
 
   return (
-    <div className="py-20 px-6" style={{ background: "oklch(0.97 0.008 80)" }}>
+    <div className="py-20 px-6" style={{ background: "oklch(0.12 0.01 250)" }}>
       <div className="max-w-5xl mx-auto">
         <FadeBlock>
           <div className="text-center mb-14">
@@ -118,19 +118,19 @@ export default function DonationSection() {
             </div>
             <p
               className="text-xs font-semibold tracking-widest uppercase mb-2"
-              style={{ color: "#078930" }}
+              style={{ color: "oklch(0.72 0.18 145)" }}
             >
               SUPPORT
             </p>
             <h2
-              className="text-4xl md:text-5xl font-bold"
-              style={{ color: "oklch(0.18 0 0)" }}
+              className="font-display text-5xl md:text-6xl font-bold"
+              style={{ color: "oklch(0.94 0.01 90)" }}
             >
               Donate to Support Adwa Museum 🇪🇹
             </h2>
             <p
               className="text-base mt-4 max-w-2xl mx-auto"
-              style={{ color: "oklch(0.45 0.02 80)" }}
+              style={{ color: "oklch(0.65 0.02 90)" }}
             >
               Support the preservation of Ethiopian history by contributing to
               the Adwa Museum.
@@ -145,7 +145,7 @@ export default function DonationSection() {
               icon: <Users size={28} />,
               title: "Educate Youth",
               desc: "Help fund digital learning resources that bring Ethiopian history to young people worldwide.",
-              color: "#078930",
+              color: "oklch(0.72 0.18 145)",
             },
             {
               icon: <Heart size={28} />,
@@ -162,9 +162,9 @@ export default function DonationSection() {
           ].map((card, i) => (
             <FadeBlock key={card.title} delay={i * 100}>
               <div
-                className="bg-white rounded-2xl p-6 text-center h-full"
+                className="bg-card rounded-2xl p-6 text-center h-full museum-card shadow-card"
                 style={{
-                  boxShadow: "0 4px 24px rgba(0,0,0,0.07)",
+                  boxShadow: "0 4px 24px rgba(0,0,0,0.35)",
                   borderTop: `4px solid ${card.color}`,
                 }}
               >
@@ -176,13 +176,13 @@ export default function DonationSection() {
                 </div>
                 <h3
                   className="font-bold text-lg mb-2"
-                  style={{ color: "oklch(0.18 0 0)" }}
+                  style={{ color: "oklch(0.94 0.01 90)" }}
                 >
                   {card.title}
                 </h3>
                 <p
                   className="text-sm leading-relaxed"
-                  style={{ color: "oklch(0.45 0.02 80)" }}
+                  style={{ color: "oklch(0.65 0.02 90)" }}
                 >
                   {card.desc}
                 </p>
@@ -195,7 +195,7 @@ export default function DonationSection() {
         <FadeBlock>
           <div
             className="rounded-2xl p-8 md:p-12"
-            style={{ background: "oklch(0.14 0.04 45)" }}
+            style={{ background: "oklch(0.14 0.01 250)" }}
           >
             <div className="grid md:grid-cols-2 gap-8">
               <div>
@@ -210,7 +210,7 @@ export default function DonationSection() {
                     {
                       icon: <BookOpen size={18} />,
                       text: "Preserve historical heritage 📚",
-                      color: "#078930",
+                      color: "oklch(0.72 0.18 145)",
                     },
                     {
                       icon: <GraduationCap size={18} />,
@@ -227,14 +227,14 @@ export default function DonationSection() {
                       key={b.text}
                       className="flex items-center gap-3 rounded-xl px-4 py-3"
                       style={{
-                        background: "oklch(0.19 0.04 45)",
+                        background: "oklch(0.19 0.01 250)",
                         borderLeft: `3px solid ${b.color}`,
                       }}
                     >
                       <span style={{ color: b.color }}>{b.icon}</span>
                       <span
                         className="text-sm font-medium"
-                        style={{ color: "oklch(0.90 0.01 80)" }}
+                        style={{ color: "oklch(0.90 0.01 90)" }}
                       >
                         {b.text}
                       </span>
@@ -272,8 +272,8 @@ export default function DonationSection() {
                     className="h-12 text-xs font-semibold rounded-xl flex flex-col gap-0.5"
                     style={{
                       borderColor: "#078930",
-                      color: "#078930",
-                      background: "oklch(0.19 0.04 45)",
+                      color: "oklch(0.72 0.18 145)",
+                      background: "oklch(0.19 0.01 250)",
                     }}
                   >
                     <Smartphone size={14} />
@@ -286,7 +286,7 @@ export default function DonationSection() {
                     style={{
                       borderColor: "#FCDD09",
                       color: "#FCDD09",
-                      background: "oklch(0.19 0.04 45)",
+                      background: "oklch(0.19 0.01 250)",
                     }}
                   >
                     <Building2 size={14} />
@@ -299,7 +299,7 @@ export default function DonationSection() {
                     style={{
                       borderColor: "#DA121A",
                       color: "#DA121A",
-                      background: "oklch(0.19 0.04 45)",
+                      background: "oklch(0.19 0.01 250)",
                     }}
                   >
                     <Phone size={14} />
@@ -308,7 +308,7 @@ export default function DonationSection() {
                 </div>
                 <p
                   className="text-center text-xs"
-                  style={{ color: "oklch(0.55 0.01 80)" }}
+                  style={{ color: "oklch(0.62 0.02 90)" }}
                 >
                   Every contribution supports Ethiopian cultural education 🇪🇹
                 </p>
@@ -335,15 +335,15 @@ export default function DonationSection() {
               exit={{ opacity: 0, y: 40 }}
               className="w-full max-w-sm rounded-3xl p-6"
               style={{
-                background: "oklch(0.18 0.05 45)",
-                border: "1px solid oklch(0.30 0.05 45)",
+                background: "oklch(0.17 0.01 250)",
+                border: "1px solid oklch(0.28 0.02 250)",
               }}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-4">
                 <h2
                   className="font-bold text-lg"
-                  style={{ color: "oklch(0.90 0.015 80)" }}
+                  style={{ color: "oklch(0.90 0.01 90)" }}
                 >
                   {modalContent[modal].title}
                 </h2>
@@ -351,7 +351,7 @@ export default function DonationSection() {
                   type="button"
                   onClick={() => setModal(null)}
                   className="w-8 h-8 rounded-full flex items-center justify-center"
-                  style={{ background: "oklch(0.25 0.04 45)" }}
+                  style={{ background: "oklch(0.22 0.015 250)" }}
                 >
                   <X size={16} color="white" />
                 </button>
@@ -367,7 +367,7 @@ export default function DonationSection() {
                     key={line.id}
                     className="text-sm leading-relaxed"
                     style={{
-                      color: line.text ? "oklch(0.82 0.015 80)" : "transparent",
+                      color: line.text ? "oklch(0.80 0.02 90)" : "transparent",
                     }}
                   >
                     {line.text || "\u00A0"}

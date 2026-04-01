@@ -17,8 +17,8 @@ const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
 export default function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
   return (
     <nav
-      className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-dark-brown border-t border-white/10 flex z-50"
-      style={{ boxShadow: "0 -4px 20px rgba(0,0,0,0.3)" }}
+      className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-background/95 backdrop-blur-md border-t border-border flex z-50"
+      style={{ boxShadow: "0 -4px 20px rgba(0,0,0,0.5)" }}
     >
       {tabs.map((tab) => {
         const isActive = activeTab === tab.id;
@@ -28,30 +28,29 @@ export default function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
             key={tab.id}
             data-ocid={`nav.${tab.id}.link`}
             onClick={() => onTabChange(tab.id)}
-            className="flex-1 flex flex-col items-center gap-0.5 py-2.5 px-1 transition-colors"
+            className="flex-1 flex flex-col items-center gap-0.5 py-2.5 px-1 transition-colors relative"
           >
             <span
-              className="transition-colors"
+              className="transition-colors duration-300"
               style={{
-                color: isActive
-                  ? "oklch(0.72 0.12 70)"
-                  : "oklch(0.65 0.015 80)",
+                color: isActive ? "oklch(0.75 0.14 85)" : "oklch(0.50 0.02 90)",
               }}
             >
               {tab.icon}
             </span>
             <span
-              className="text-[10px] font-medium transition-colors"
+              className="text-[10px] font-medium transition-colors duration-300"
               style={{
-                color: isActive
-                  ? "oklch(0.72 0.12 70)"
-                  : "oklch(0.65 0.015 80)",
+                color: isActive ? "oklch(0.75 0.14 85)" : "oklch(0.50 0.02 90)",
               }}
             >
               {tab.label}
             </span>
             {isActive && (
-              <span className="absolute bottom-0 w-8 h-0.5 bg-gold rounded-full" />
+              <span
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 rounded-full"
+                style={{ background: "oklch(0.75 0.14 85)" }}
+              />
             )}
           </button>
         );

@@ -56,7 +56,7 @@ export default function GallerySection() {
   const [lightbox, setLightbox] = useState<number | null>(null);
 
   return (
-    <div className="py-20 px-6" style={{ background: "oklch(0.97 0.008 80)" }}>
+    <div className="py-20 px-6" style={{ background: "oklch(0.12 0.01 250)" }}>
       <div className="max-w-7xl mx-auto">
         <FadeBlock>
           <div className="text-center mb-14">
@@ -67,19 +67,19 @@ export default function GallerySection() {
             </div>
             <p
               className="text-xs font-semibold tracking-widest uppercase mb-2"
-              style={{ color: "#078930" }}
+              style={{ color: "oklch(0.72 0.18 145)" }}
             >
               GALLERY
             </p>
             <h2
-              className="text-4xl md:text-5xl font-bold"
-              style={{ color: "oklch(0.18 0 0)" }}
+              className="font-display text-5xl md:text-6xl font-bold"
+              style={{ color: "oklch(0.94 0.01 90)" }}
             >
               Historical Gallery
             </h2>
             <p
               className="text-base mt-4 max-w-xl mx-auto"
-              style={{ color: "oklch(0.45 0.02 80)" }}
+              style={{ color: "oklch(0.65 0.02 90)" }}
             >
               Portraits, battle scenes, and cultural visuals from the Battle of
               Adwa era
@@ -92,8 +92,8 @@ export default function GallerySection() {
             <FadeBlock key={img.caption} delay={i * 100}>
               <button
                 type="button"
-                className="bg-white rounded-2xl overflow-hidden cursor-pointer group transition-transform hover:-translate-y-1 w-full text-left"
-                style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}
+                className="bg-card rounded-2xl overflow-hidden cursor-pointer group transition-transform hover:-translate-y-1 w-full text-left"
+                style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.35)" }}
                 onClick={() => setLightbox(i)}
               >
                 <div className="h-1.5 flex">
@@ -110,13 +110,13 @@ export default function GallerySection() {
                 <div className="px-5 py-4">
                   <h3
                     className="font-bold text-sm"
-                    style={{ color: "oklch(0.18 0 0)" }}
+                    style={{ color: "oklch(0.94 0.01 90)" }}
                   >
                     {img.caption}
                   </h3>
                   <p
                     className="text-xs mt-1 leading-snug"
-                    style={{ color: "oklch(0.50 0.02 80)" }}
+                    style={{ color: "oklch(0.60 0.02 90)" }}
                   >
                     {img.description}
                   </p>

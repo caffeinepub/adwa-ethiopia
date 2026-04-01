@@ -48,7 +48,7 @@ function StarRating({
             <Star
               size={interactive ? 22 : 14}
               fill={filled ? "#FCDD09" : "none"}
-              stroke={filled ? "#FCDD09" : "oklch(0.70 0.02 80)"}
+              stroke={filled ? "#FCDD09" : "oklch(0.40 0.02 90)"}
               strokeWidth={1.8}
             />
           </button>
@@ -93,7 +93,7 @@ export default function CommentsSection() {
   const canSubmit = input.trim().length > 0 && rating > 0;
 
   return (
-    <div className="py-20 px-6" style={{ background: "oklch(0.14 0.04 45)" }}>
+    <div className="py-20 px-6" style={{ background: "oklch(0.14 0.01 250)" }}>
       <div className="max-w-3xl mx-auto">
         <div ref={headerRef} className="fade-in-up text-center mb-12">
           <div className="eth-stripe mx-auto mb-5" style={{ maxWidth: 60 }}>
@@ -107,14 +107,14 @@ export default function CommentsSection() {
             style={{ color: "#FCDD09" }}
           />
           <h2
-            className="text-4xl md:text-5xl font-bold"
-            style={{ color: "oklch(0.95 0.008 80)" }}
+            className="font-display text-5xl md:text-6xl font-bold"
+            style={{ color: "oklch(0.96 0.01 90)" }}
           >
             Comments & Experiences
           </h2>
           <p
             className="text-base mt-4"
-            style={{ color: "oklch(0.65 0.01 80)" }}
+            style={{ color: "oklch(0.65 0.02 90)" }}
           >
             Share your thoughts about the Battle of Adwa
           </p>
@@ -123,12 +123,12 @@ export default function CommentsSection() {
         {/* Input form */}
         <div
           ref={formRef}
-          className="fade-in-up bg-white rounded-2xl p-6 mb-8"
+          className="fade-in-up bg-card rounded-2xl p-6 mb-8 shadow-card"
           style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.10)" }}
         >
           <p
             className="text-xs font-semibold tracking-widest uppercase mb-3"
-            style={{ color: "#078930" }}
+            style={{ color: "oklch(0.72 0.18 145)" }}
           >
             Your Rating
           </p>
@@ -137,7 +137,7 @@ export default function CommentsSection() {
             {rating === 0 && (
               <p
                 className="text-xs mt-1"
-                style={{ color: "oklch(0.65 0.01 80)" }}
+                style={{ color: "oklch(0.65 0.02 90)" }}
               >
                 Tap a star to rate
               </p>
@@ -146,7 +146,7 @@ export default function CommentsSection() {
           <label
             htmlFor="comment-input"
             className="block text-xs font-semibold tracking-widest uppercase mb-2"
-            style={{ color: "#078930" }}
+            style={{ color: "oklch(0.72 0.18 145)" }}
           >
             Your Comment
           </label>
@@ -160,14 +160,14 @@ export default function CommentsSection() {
             }}
             placeholder="Write about your experience or thoughts about the Battle of Adwa…"
             rows={4}
-            className="w-full resize-none rounded-xl border px-4 py-3 text-sm outline-none focus:border-green-600"
+            className="w-full resize-none rounded-xl border border-border bg-input px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-primary/50 transition-all"
             style={{
-              borderColor: "oklch(0.88 0.01 80)",
-              color: "oklch(0.22 0 0)",
+              borderColor: "oklch(0.28 0.02 250)",
+              color: "oklch(0.94 0.01 90)",
             }}
           />
           <div className="flex items-center justify-between mt-4">
-            <span className="text-xs" style={{ color: "oklch(0.60 0.02 80)" }}>
+            <span className="text-xs" style={{ color: "oklch(0.60 0.02 90)" }}>
               {rating === 0 ? "Please add a rating" : "Ctrl+Enter to submit"}
             </span>
             <button
@@ -213,8 +213,8 @@ export default function CommentsSection() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    className="rounded-2xl p-5"
-                    style={{ background: "oklch(0.19 0.04 45)" }}
+                    className="rounded-2xl p-5 museum-card"
+                    style={{ background: "oklch(0.19 0.01 250)" }}
                   >
                     <div className="flex items-start justify-between gap-2 mb-3">
                       <div>
@@ -227,7 +227,7 @@ export default function CommentsSection() {
                           </div>
                           <span
                             className="text-xs"
-                            style={{ color: "oklch(0.55 0.01 80)" }}
+                            style={{ color: "oklch(0.62 0.02 90)" }}
                           >
                             {new Date(comment.timestamp).toLocaleDateString(
                               undefined,
@@ -253,13 +253,13 @@ export default function CommentsSection() {
                       >
                         <Trash2
                           size={14}
-                          style={{ color: "oklch(0.55 0.01 80)" }}
+                          style={{ color: "oklch(0.62 0.02 90)" }}
                         />
                       </button>
                     </div>
                     <p
                       className="text-sm leading-relaxed"
-                      style={{ color: "oklch(0.88 0.01 80)" }}
+                      style={{ color: "oklch(0.28 0.02 250)" }}
                     >
                       {comment.text}
                     </p>
@@ -273,7 +273,7 @@ export default function CommentsSection() {
         {comments.length === 0 && (
           <div className="text-center py-10">
             <p className="text-4xl mb-3">💬</p>
-            <p className="text-sm" style={{ color: "oklch(0.55 0.01 80)" }}>
+            <p className="text-sm" style={{ color: "oklch(0.62 0.02 90)" }}>
               Be the first to share your experience!
             </p>
           </div>

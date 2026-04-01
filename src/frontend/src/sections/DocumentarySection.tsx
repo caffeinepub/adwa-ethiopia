@@ -51,7 +51,7 @@ function FadeBlock({
 
 export default function DocumentarySection() {
   return (
-    <div className="py-20 px-6" style={{ background: "oklch(0.14 0.04 45)" }}>
+    <div className="py-20 px-6" style={{ background: "oklch(0.14 0.01 250)" }}>
       <div className="max-w-7xl mx-auto">
         <FadeBlock>
           <div className="text-center mb-14">
@@ -67,14 +67,14 @@ export default function DocumentarySection() {
               WATCH & LEARN
             </p>
             <h2
-              className="text-4xl md:text-5xl font-bold"
-              style={{ color: "oklch(0.95 0.008 80)" }}
+              className="font-display text-5xl md:text-6xl font-bold"
+              style={{ color: "oklch(0.96 0.01 90)" }}
             >
               Documentaries
             </h2>
             <p
               className="text-base mt-4 max-w-xl mx-auto"
-              style={{ color: "oklch(0.65 0.01 80)" }}
+              style={{ color: "oklch(0.65 0.02 90)" }}
             >
               Watch carefully curated documentaries about the Battle of Adwa and
               Ethiopian history
@@ -88,8 +88,8 @@ export default function DocumentarySection() {
               <div
                 className="rounded-2xl overflow-hidden"
                 style={{
-                  background: "oklch(0.19 0.04 45)",
-                  boxShadow: "0 4px 24px rgba(0,0,0,0.25)",
+                  background: "oklch(0.19 0.01 250)",
+                  boxShadow: "0 4px 24px rgba(0,0,0,0.45)",
                 }}
               >
                 <div className="relative" style={{ paddingBottom: "56.25%" }}>
@@ -104,13 +104,13 @@ export default function DocumentarySection() {
                 <div className="p-5">
                   <h3
                     className="font-bold text-base mb-2"
-                    style={{ color: "oklch(0.93 0.01 80)" }}
+                    style={{ color: "oklch(0.94 0.01 90)" }}
                   >
                     {doc.title}
                   </h3>
                   <p
                     className="text-sm leading-relaxed"
-                    style={{ color: "oklch(0.65 0.01 80)" }}
+                    style={{ color: "oklch(0.65 0.02 90)" }}
                   >
                     {doc.description}
                   </p>

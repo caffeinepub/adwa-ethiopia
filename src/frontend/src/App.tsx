@@ -28,10 +28,7 @@ import QuizSection from "./sections/QuizSection";
 
 export default function App() {
   return (
-    <div
-      className="min-h-screen"
-      style={{ background: "oklch(0.97 0.008 80)" }}
-    >
+    <div className="min-h-screen bg-background">
       <TopNav />
       <main>
         <section id="home">
@@ -71,19 +68,17 @@ export default function App() {
           <AboutSection />
         </section>
       </main>
-      <footer
-        className="text-center py-8 px-4 border-t"
-        style={{ borderColor: "oklch(0.88 0.01 80)" }}
-      >
+
+      <footer className="text-center py-10 px-4 border-t border-border">
         <div
-          className="eth-stripe mb-6"
-          style={{ height: "3px", maxWidth: "120px", margin: "0 auto 24px" }}
+          className="eth-stripe mb-6 mx-auto"
+          style={{ height: "3px", maxWidth: "120px" }}
         >
           <div className="s-green" />
           <div className="s-yellow" />
           <div className="s-red" />
         </div>
-        <p className="text-sm" style={{ color: "oklch(0.50 0.02 80)" }}>
+        <p className="text-sm text-muted-foreground">
           © 2026 by Helen Metekiya
         </p>
       </footer>

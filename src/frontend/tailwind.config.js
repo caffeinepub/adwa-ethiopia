@@ -17,6 +17,7 @@ export default {
     extend: {
       fontFamily: {
         display: ["Playfair Display", "Georgia", "serif"],
+        sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
         body: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
       },
       colors: {
@@ -54,10 +55,6 @@ export default {
           foreground: "oklch(var(--card-foreground))",
         },
         gold: "oklch(var(--gold))",
-        maroon: "oklch(var(--maroon))",
-        "deep-green": "oklch(var(--deep-green))",
-        "dark-brown": "oklch(var(--dark-brown))",
-        tan: "oklch(var(--tan))",
         chart: {
           1: "oklch(var(--chart-1))",
           2: "oklch(var(--chart-2))",
@@ -80,10 +77,17 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        card: "16px",
+        btn: "8px",
+        pill: "999px",
       },
       boxShadow: {
-        card: "0 2px 12px 0 rgba(42,26,18,0.10)",
-        xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
+        card: "0 4px 24px oklch(0 0 0 / 0.4)",
+        "card-hover": "0 12px 40px oklch(0 0 0 / 0.6)",
+        "glow-green": "0 0 24px oklch(0.72 0.18 145 / 0.25)",
+        "glow-gold": "0 0 24px oklch(0.75 0.14 85 / 0.25)",
+        "glow-red": "0 0 24px oklch(0.62 0.16 28 / 0.25)",
+        xs: "0 1px 2px 0 rgba(0,0,0,0.1)",
       },
       keyframes: {
         "accordion-down": {

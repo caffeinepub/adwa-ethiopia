@@ -28,7 +28,7 @@ function FadeBlock({
 
 export default function LearnSection() {
   return (
-    <div className="py-20 px-6" style={{ background: "oklch(0.97 0.008 80)" }}>
+    <div className="py-20 px-6" style={{ background: "oklch(0.12 0.01 250)" }}>
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <FadeBlock>
@@ -40,19 +40,19 @@ export default function LearnSection() {
             </div>
             <p
               className="text-xs font-semibold tracking-widest uppercase mb-2"
-              style={{ color: "#078930" }}
+              style={{ color: "oklch(0.72 0.18 145)" }}
             >
               HISTORY
             </p>
             <h2
-              className="text-4xl md:text-5xl font-bold"
-              style={{ color: "oklch(0.18 0 0)" }}
+              className="font-display text-5xl md:text-6xl font-bold"
+              style={{ color: "oklch(0.94 0.01 90)" }}
             >
               The Battle of Adwa
             </h2>
             <p
               className="text-base mt-4 max-w-2xl mx-auto leading-relaxed"
-              style={{ color: "oklch(0.40 0.02 80)" }}
+              style={{ color: "oklch(0.65 0.02 90)" }}
             >
               On March 1, 1896, Ethiopian forces under Emperor Menelik II won a
               decisive victory over the Italian army, becoming the first African
@@ -65,8 +65,8 @@ export default function LearnSection() {
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           <FadeBlock delay={100}>
             <div
-              className="bg-white rounded-2xl overflow-hidden h-full"
-              style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}
+              className="bg-card rounded-2xl overflow-hidden h-full museum-card shadow-card"
+              style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.35)" }}
             >
               <div className="h-2 flex">
                 <div className="flex-1" style={{ background: "#078930" }} />
@@ -76,7 +76,7 @@ export default function LearnSection() {
               <div className="p-6">
                 <p
                   className="text-xs font-semibold tracking-widest uppercase mb-4"
-                  style={{ color: "#078930" }}
+                  style={{ color: "oklch(0.72 0.18 145)" }}
                 >
                   KEY FACTS
                 </p>
@@ -85,13 +85,13 @@ export default function LearnSection() {
                     <div key={f.label} className="flex gap-3">
                       <span
                         className="text-sm font-bold w-28 shrink-0"
-                        style={{ color: "oklch(0.55 0.02 80)" }}
+                        style={{ color: "oklch(0.62 0.02 90)" }}
                       >
                         {f.label}:
                       </span>
                       <span
                         className="text-sm"
-                        style={{ color: "oklch(0.22 0 0)" }}
+                        style={{ color: "oklch(0.94 0.01 90)" }}
                       >
                         {f.value}
                       </span>
@@ -119,8 +119,8 @@ export default function LearnSection() {
               ].map((leader) => (
                 <div
                   key={leader.name}
-                  className="bg-white rounded-2xl overflow-hidden"
-                  style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}
+                  className="bg-card rounded-2xl overflow-hidden museum-card shadow-card"
+                  style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.35)" }}
                 >
                   <div className="h-1.5" style={{ background: "#DA121A" }} />
                   <img
@@ -132,13 +132,13 @@ export default function LearnSection() {
                   <div className="p-4">
                     <h3
                       className="font-bold text-sm"
-                      style={{ color: "oklch(0.18 0 0)" }}
+                      style={{ color: "oklch(0.94 0.01 90)" }}
                     >
                       {leader.name}
                     </h3>
                     <p
                       className="text-xs mt-1 leading-snug"
-                      style={{ color: "oklch(0.50 0.02 80)" }}
+                      style={{ color: "oklch(0.60 0.02 90)" }}
                     >
                       {leader.bio}
                     </p>
@@ -170,21 +170,21 @@ export default function LearnSection() {
           ].map((s, i) => (
             <FadeBlock key={s.title} delay={i * 120}>
               <div
-                className="bg-white rounded-2xl p-6 h-full"
+                className="bg-card rounded-2xl p-6 h-full museum-card shadow-card"
                 style={{
-                  boxShadow: "0 4px 24px rgba(0,0,0,0.07)",
+                  boxShadow: "0 4px 24px rgba(0,0,0,0.35)",
                   borderTop: `4px solid ${s.accent}`,
                 }}
               >
                 <h3
                   className="font-bold text-lg mb-3"
-                  style={{ color: "oklch(0.18 0 0)" }}
+                  style={{ color: "oklch(0.94 0.01 90)" }}
                 >
                   {s.title}
                 </h3>
                 <p
                   className="text-sm leading-relaxed"
-                  style={{ color: "oklch(0.40 0.02 80)" }}
+                  style={{ color: "oklch(0.65 0.02 90)" }}
                 >
                   {s.text}
                 </p>
@@ -198,7 +198,7 @@ export default function LearnSection() {
           <div
             className="rounded-2xl overflow-hidden"
             style={{
-              background: "oklch(0.14 0.04 45)",
+              background: "oklch(0.14 0.01 250)",
               boxShadow: "0 8px 40px rgba(0,0,0,0.15)",
             }}
           >
@@ -216,7 +216,7 @@ export default function LearnSection() {
               </p>
               <h3
                 className="text-3xl font-bold mb-6"
-                style={{ color: "oklch(0.95 0.008 80)" }}
+                style={{ color: "oklch(0.96 0.01 90)" }}
               >
                 🏗️ Adwa Victory Memorial Museum
               </h3>
@@ -224,7 +224,7 @@ export default function LearnSection() {
                 <div className="space-y-4">
                   <p
                     className="text-sm leading-relaxed"
-                    style={{ color: "oklch(0.75 0.01 80)" }}
+                    style={{ color: "oklch(0.72 0.02 90)" }}
                   >
                     The{" "}
                     <strong className="text-white">
@@ -235,7 +235,7 @@ export default function LearnSection() {
                   </p>
                   <p
                     className="text-sm leading-relaxed"
-                    style={{ color: "oklch(0.75 0.01 80)" }}
+                    style={{ color: "oklch(0.72 0.02 90)" }}
                   >
                     Officially inaugurated in{" "}
                     <strong className="text-white">
@@ -245,7 +245,7 @@ export default function LearnSection() {
                   </p>
                   <div
                     className="rounded-xl p-4"
-                    style={{ background: "oklch(0.19 0.04 45)" }}
+                    style={{ background: "oklch(0.19 0.01 250)" }}
                   >
                     <p
                       className="text-xs font-semibold mb-3"
@@ -262,7 +262,7 @@ export default function LearnSection() {
                         <li
                           key={item}
                           className="flex items-center gap-2 text-sm"
-                          style={{ color: "oklch(0.80 0.01 80)" }}
+                          style={{ color: "oklch(0.78 0.02 90)" }}
                         >
                           <span
                             className="w-1.5 h-1.5 rounded-full shrink-0"
@@ -277,12 +277,12 @@ export default function LearnSection() {
                     className="rounded-xl p-4"
                     style={{
                       background: "rgba(218,18,26,0.15)",
-                      borderLeft: "3px solid #DA121A",
+                      borderLeft: "3px solid oklch(0.62 0.16 28)",
                     }}
                   >
                     <p
                       className="text-sm font-semibold"
-                      style={{ color: "oklch(0.92 0.01 80)" }}
+                      style={{ color: "oklch(0.94 0.01 90)" }}
                     >
                       It is not just a museum — it is a symbol of pride, unity,
                       and identity for all Ethiopians ❤️🇪🇹
@@ -299,14 +299,14 @@ export default function LearnSection() {
                     />
                     <div
                       className="px-4 py-3"
-                      style={{ background: "oklch(0.19 0.04 45)" }}
+                      style={{ background: "oklch(0.19 0.01 250)" }}
                     >
                       <p className="text-sm font-semibold text-center text-white">
                         Prime Minister Abiy Ahmed Ali 🇪🇹
                       </p>
                       <p
                         className="text-xs text-center mt-1"
-                        style={{ color: "oklch(0.65 0.01 80)" }}
+                        style={{ color: "oklch(0.65 0.02 90)" }}
                       >
                         Inaugurated the Adwa Victory Memorial Museum in 2024
                         (Ethiopian Calendar: 2016)

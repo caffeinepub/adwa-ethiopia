@@ -1,34 +1,38 @@
-# Adwa Ethiopia — Modern Historical Website Redesign
+# Adwa Ethiopia — Design Upgrade
 
 ## Current State
-The app is a mobile-first app (max-width: 430px) with a bottom navigation bar and tab-based navigation. It has 11 tabs: Home, Learn, History, Gallery, Quiz, AI Chat, Documentary, Music, Donation, Comments, About. The design uses warm cream/brown tones with a gold accent. Currently lacks scroll-based animations.
+The site is a multi-section historical website about the Battle of Adwa, built with React/TypeScript/Tailwind. It has: a full-width layout, sticky TopNav, hero section, Heroes of Adwa cards, Learn section, Gallery, Quiz, Music, Documentary (YouTube), Donation, Comments, and an About Developer section. Animations (fade-in on scroll) and Ethiopian flag colors are already partially in place, but the overall visual quality is inconsistent — spacing is uneven, typography hierarchy is weak, cards feel generic, and transitions are not polished.
 
 ## Requested Changes (Diff)
 
 ### Add
-- Scroll-triggered fade-in + upward movement animations for all sections (opacity 0→1, translateY 30px→0, duration 1s, ease-out, use IntersectionObserver)
-- A `useScrollAnimation` custom hook that attaches IntersectionObserver to elements
-- Ethiopian flag color palette prominently: green (#078930), yellow/gold (#FCDD09), red (#DA121A) as primary accent colors
-- Full-width desktop website layout (not capped at 430px) with a top navigation bar
-- A hero section that spans full viewport height with a dramatic background
+- Premium typography system: Playfair Display (headings) + Plus Jakarta Sans (body) via @font-face from pre-bundled woff2 files
+- OKLCH-based design token system in index.css with Ethiopian flag colors (green, yellow, red) as soft, muted tones on a near-white or deep-dark background
+- Consistent scroll-triggered fade-in + upward movement (1s ease, staggered per card)
+- Hover effects on all cards: slight translateY lift + soft shadow glow in the card's accent color
+- Hover effects on buttons: subtle scale + shadow transition (0.3s ease)
+- Soft box-shadow system (layered, multi-level depth)
+- Section dividers with elegant spacing (py-24 min between sections)
 
 ### Modify
-- `index.css`: Update CSS variables to feature Ethiopian flag colors as primary accents. Remove mobile-only `app-frame` max-width constraint. Add `@keyframes fadeInUp` animation classes.
-- `App.tsx`: Replace bottom nav + tab system with a single-page scrolling website layout with anchor-based navigation in a sticky top nav bar. All sections on one page, scrollable.
-- `HomeTab.tsx` → Becomes the main landing hero section within the single-page layout
-- All tab components: Convert to sections within the single scrolling page, each wrapped with scroll animation
-- `BottomNav.tsx`: Replace with a top sticky navigation bar with links to each section anchor
+- index.css: Replace current token values with muted OKLCH Ethiopian palette; set font families; add global scroll-fade animation utility classes
+- All section files: Apply updated spacing, font size classes, and border-radius to cards/images
+- TopNav: Refine to feel more premium — thin border-bottom, backdrop blur, elegant font
+- HeroesSection: Upgrade card grid with uniform sizing, improved circular image treatment, and refined hover lift
+- HomeSection hero: Large Playfair Display headline, generous vertical spacing, flag color accent lines
+- GallerySection: Consistent rounded corners, lazy loading, lightbox hover overlay
+- LearnSection, QuizSection, MusicSection, DonationSection, CommentsTab, AboutTab: Consistent card styling, refined buttons, clean input fields
 
 ### Remove
-- Mobile `app-shell` / `app-frame` max-width constraint
-- Bottom navigation bar
-- Tab switching system
+- Any harsh/neon colors or color literals in components
+- Overly fast transitions (anything < 0.25s)
+- Inconsistent inline spacing/margin values that break grid rhythm
 
 ## Implementation Plan
-1. Update `index.css` with Ethiopian flag OKLCH color tokens as primary colors, add fade-in-up animation keyframes, remove mobile shell constraints, set full-width layout
-2. Create `useScrollAnimation` hook using IntersectionObserver
-3. Rewrite `App.tsx` as a single-page scrolling site with a sticky top nav
-4. Rewrite `BottomNav.tsx` → `TopNav.tsx` with anchor links to all sections
-5. Convert each tab into a `<section id="...">` component with scroll animations applied
-6. Ensure all section headings, cards, images use fade-in-up on scroll
-7. Validate and build
+1. Update `index.css` with OKLCH tokens (muted green/yellow/red palette), @font-face for Playfair Display + Plus Jakarta Sans, and global animation utilities (.fade-up, .fade-up-visible)
+2. Update `tailwind.config.js` to register font families, custom shadow scale, and border-radius tokens
+3. Refactor `TopNav` for premium feel
+4. Upgrade `HomeSection` hero typography and spacing
+5. Upgrade `HeroesSection` card grid with refined hover/shadow
+6. Apply consistent card styles across all remaining sections
+7. Validate (lint + typecheck + build)

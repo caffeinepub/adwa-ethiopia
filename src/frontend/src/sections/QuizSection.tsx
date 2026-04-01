@@ -191,7 +191,7 @@ export default function QuizSection() {
     timeLeft > 10 ? "#078930" : timeLeft > 5 ? "#FCDD09" : "#DA121A";
 
   return (
-    <div className="py-20 px-6" style={{ background: "oklch(0.97 0.008 80)" }}>
+    <div className="py-20 px-6" style={{ background: "oklch(0.12 0.01 250)" }}>
       <div className="max-w-2xl mx-auto">
         <div ref={headerRef} className="fade-in-up text-center mb-12">
           <div className="eth-stripe mx-auto mb-5" style={{ maxWidth: 60 }}>
@@ -201,19 +201,19 @@ export default function QuizSection() {
           </div>
           <p
             className="text-xs font-semibold tracking-widest uppercase mb-2"
-            style={{ color: "#078930" }}
+            style={{ color: "oklch(0.72 0.18 145)" }}
           >
             QUIZ
           </p>
           <h2
-            className="text-4xl md:text-5xl font-bold"
-            style={{ color: "oklch(0.18 0 0)" }}
+            className="font-display text-5xl md:text-6xl font-bold"
+            style={{ color: "oklch(0.94 0.01 90)" }}
           >
             Test Your Knowledge
           </h2>
           <p
             className="text-base mt-4"
-            style={{ color: "oklch(0.45 0.02 80)" }}
+            style={{ color: "oklch(0.65 0.02 90)" }}
           >
             20 bilingual questions about the Battle of Adwa
           </p>
@@ -223,8 +223,8 @@ export default function QuizSection() {
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="bg-white rounded-2xl overflow-hidden text-center"
-            style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}
+            className="bg-card rounded-2xl overflow-hidden text-center shadow-card"
+            style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.35)" }}
           >
             <div className="h-2 flex">
               <div className="flex-1" style={{ background: "#078930" }} />
@@ -241,11 +241,11 @@ export default function QuizSection() {
               />
               <h3
                 className="text-4xl font-bold mb-2"
-                style={{ color: "oklch(0.18 0 0)" }}
+                style={{ color: "oklch(0.94 0.01 90)" }}
               >
                 {score}/{questions.length}
               </h3>
-              <p style={{ color: "oklch(0.45 0.02 80)" }}>
+              <p style={{ color: "oklch(0.65 0.02 90)" }}>
                 {score === questions.length
                   ? "Perfect score! You're an Adwa expert! 🌟"
                   : "Great effort! Review the Learn section to improve."}
@@ -274,13 +274,13 @@ export default function QuizSection() {
                         ? "#078930"
                         : i === currentQ
                           ? "#FCDD09"
-                          : "oklch(0.88 0.01 80)",
+                          : "oklch(0.28 0.02 250)",
                   }}
                 />
               ))}
               <span
                 className="text-xs shrink-0 ml-2"
-                style={{ color: "oklch(0.50 0.02 80)" }}
+                style={{ color: "oklch(0.60 0.02 90)" }}
               >
                 {currentQ + 1}/{questions.length}
               </span>
@@ -290,7 +290,7 @@ export default function QuizSection() {
               <Clock size={14} style={{ color: timerColor }} />
               <div
                 className="flex-1 h-2 rounded-full"
-                style={{ background: "oklch(0.88 0.01 80)" }}
+                style={{ background: "oklch(0.22 0.015 250)" }}
               >
                 <motion.div
                   className="h-2 rounded-full"
@@ -315,21 +315,21 @@ export default function QuizSection() {
                 transition={{ duration: 0.2 }}
               >
                 <div
-                  className="bg-white rounded-2xl p-6 mb-4"
+                  className="bg-card rounded-2xl p-6 mb-4"
                   style={{
-                    boxShadow: "0 4px 24px rgba(0,0,0,0.07)",
+                    boxShadow: "0 4px 24px rgba(0,0,0,0.35)",
                     borderTop: "4px solid #FCDD09",
                   }}
                 >
                   <p
                     className="font-bold text-lg mb-1"
-                    style={{ color: "oklch(0.18 0 0)" }}
+                    style={{ color: "oklch(0.94 0.01 90)" }}
                   >
                     {questions[currentQ].en}
                   </p>
                   <p
                     className="text-sm"
-                    style={{ color: "oklch(0.50 0.02 80)" }}
+                    style={{ color: "oklch(0.60 0.02 90)" }}
                   >
                     {questions[currentQ].am}
                   </p>
@@ -340,7 +340,7 @@ export default function QuizSection() {
                     const isCorrect = idx === questions[currentQ].correctIndex;
                     const revealed = selected !== null;
                     let bg = "white";
-                    let border = "oklch(0.88 0.01 80)";
+                    let border = "oklch(0.28 0.02 250)";
                     if (revealed) {
                       if (isCorrect) {
                         bg = "#e8f7ec";
@@ -372,7 +372,7 @@ export default function QuizSection() {
                         </span>
                         <span
                           className="text-sm"
-                          style={{ color: "oklch(0.22 0 0)" }}
+                          style={{ color: "oklch(0.94 0.01 90)" }}
                         >
                           {opt}
                         </span>
@@ -380,7 +380,7 @@ export default function QuizSection() {
                           <CheckCircle
                             size={16}
                             className="ml-auto shrink-0"
-                            style={{ color: "#078930" }}
+                            style={{ color: "oklch(0.72 0.18 145)" }}
                           />
                         )}
                         {revealed && isSelected && !isCorrect && (

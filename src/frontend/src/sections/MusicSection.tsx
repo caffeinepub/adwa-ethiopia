@@ -45,7 +45,7 @@ function FadeBlock({
 
 export default function MusicSection() {
   return (
-    <div className="py-20 px-6" style={{ background: "oklch(0.97 0.008 80)" }}>
+    <div className="py-20 px-6" style={{ background: "oklch(0.12 0.01 250)" }}>
       <div className="max-w-7xl mx-auto">
         <FadeBlock>
           <div className="text-center mb-14">
@@ -56,19 +56,19 @@ export default function MusicSection() {
             </div>
             <p
               className="text-xs font-semibold tracking-widest uppercase mb-2"
-              style={{ color: "#078930" }}
+              style={{ color: "oklch(0.72 0.18 145)" }}
             >
               CULTURAL HERITAGE
             </p>
             <h2
-              className="text-4xl md:text-5xl font-bold"
-              style={{ color: "oklch(0.18 0 0)" }}
+              className="font-display text-5xl md:text-6xl font-bold"
+              style={{ color: "oklch(0.94 0.01 90)" }}
             >
               Patriotic Music
             </h2>
             <p
               className="text-base mt-4 max-w-xl mx-auto"
-              style={{ color: "oklch(0.45 0.02 80)" }}
+              style={{ color: "oklch(0.65 0.02 90)" }}
             >
               Songs celebrating Ethiopian pride, unity, and the legacy of Adwa
             </p>
@@ -79,8 +79,8 @@ export default function MusicSection() {
           {videos.map((v, i) => (
             <FadeBlock key={v.id} delay={i * 100}>
               <div
-                className="bg-white rounded-2xl overflow-hidden"
-                style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}
+                className="bg-card rounded-2xl overflow-hidden museum-card shadow-card"
+                style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.35)" }}
               >
                 <div className="h-1.5 flex">
                   <div className="flex-1" style={{ background: "#078930" }} />
@@ -99,13 +99,13 @@ export default function MusicSection() {
                 <div className="px-5 py-4">
                   <h3
                     className="font-bold text-base"
-                    style={{ color: "oklch(0.18 0 0)" }}
+                    style={{ color: "oklch(0.94 0.01 90)" }}
                   >
                     {v.title}
                   </h3>
                   <p
                     className="text-sm mt-1"
-                    style={{ color: "oklch(0.50 0.02 80)" }}
+                    style={{ color: "oklch(0.60 0.02 90)" }}
                   >
                     {v.subtitle}
                   </p>

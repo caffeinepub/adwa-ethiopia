@@ -52,7 +52,7 @@ export default function HistorySection() {
   const [lightbox, setLightbox] = useState<string | null>(null);
 
   return (
-    <div className="py-20 px-6" style={{ background: "oklch(0.14 0.04 45)" }}>
+    <div className="py-20 px-6" style={{ background: "oklch(0.14 0.01 250)" }}>
       <div className="max-w-7xl mx-auto">
         <FadeBlock>
           <div className="text-center mb-14">
@@ -68,14 +68,14 @@ export default function HistorySection() {
               Historical Context
             </p>
             <h2
-              className="text-4xl md:text-5xl font-bold"
-              style={{ color: "oklch(0.95 0.008 80)" }}
+              className="font-display text-5xl md:text-6xl font-bold"
+              style={{ color: "oklch(0.96 0.01 90)" }}
             >
               Before Adwa
             </h2>
             <p
               className="text-base mt-4 max-w-xl mx-auto"
-              style={{ color: "oklch(0.65 0.01 80)" }}
+              style={{ color: "oklch(0.65 0.02 90)" }}
             >
               The diplomatic betrayal that led to Ethiopia’s greatest victory
             </p>
@@ -86,7 +86,7 @@ export default function HistorySection() {
         <div className="max-w-3xl mx-auto relative mb-16">
           <div
             className="absolute left-8 top-0 bottom-0 w-0.5"
-            style={{ background: "oklch(0.28 0.04 45)" }}
+            style={{ background: "oklch(0.24 0.01 250)" }}
           />
           {timelineSteps.map((step, i) => (
             <FadeBlock key={step.year} delay={i * 150}>
@@ -94,7 +94,7 @@ export default function HistorySection() {
                 <div
                   className="relative z-10 flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-sm font-bold"
                   style={{
-                    background: "oklch(0.19 0.04 45)",
+                    background: "oklch(0.19 0.01 250)",
                     border: `2px solid ${step.color}`,
                     color: step.color,
                   }}
@@ -104,7 +104,7 @@ export default function HistorySection() {
                 <div
                   className="flex-1 rounded-2xl p-6"
                   style={{
-                    background: "oklch(0.19 0.04 45)",
+                    background: "oklch(0.19 0.01 250)",
                     borderLeft: `3px solid ${step.color}`,
                   }}
                 >
@@ -116,13 +116,13 @@ export default function HistorySection() {
                   </span>
                   <h3
                     className="font-bold text-base mb-2"
-                    style={{ color: "oklch(0.93 0.01 80)" }}
+                    style={{ color: "oklch(0.94 0.01 90)" }}
                   >
                     {step.title}
                   </h3>
                   <p
                     className="text-sm leading-relaxed"
-                    style={{ color: "oklch(0.68 0.01 80)" }}
+                    style={{ color: "oklch(0.65 0.02 90)" }}
                   >
                     {step.description}
                   </p>
@@ -164,7 +164,7 @@ export default function HistorySection() {
               />
               <div
                 className="px-4 py-3"
-                style={{ background: "oklch(0.19 0.04 45)" }}
+                style={{ background: "oklch(0.19 0.01 250)" }}
               >
                 <p className="text-xs text-center" style={{ color: "#FCDD09" }}>
                   የአድዋ ዘሜቻ የከተተ አዋፅ — Historic Adwa Campaign Proclamation
@@ -179,8 +179,8 @@ export default function HistorySection() {
           <div
             className="max-w-2xl mx-auto mt-12 rounded-2xl p-8"
             style={{
-              background: "oklch(0.19 0.04 45)",
-              border: "1px solid oklch(0.28 0.04 45)",
+              background: "oklch(0.19 0.01 250)",
+              border: "1px solid oklch(0.28 0.02 250)",
             }}
           >
             <p
@@ -191,7 +191,7 @@ export default function HistorySection() {
             </p>
             <p
               className="text-base leading-relaxed"
-              style={{ color: "oklch(0.80 0.01 80)" }}
+              style={{ color: "oklch(0.78 0.02 90)" }}
             >
               The victory at Adwa proved that an African nation could stand up
               to European colonialism. Ethiopia became a beacon of hope and

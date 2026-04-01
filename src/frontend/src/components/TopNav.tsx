@@ -20,15 +20,9 @@ export default function TopNav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header
-      className="fixed top-0 left-0 right-0 z-50"
-      style={{
-        background: "rgba(14,24,14,0.96)",
-        backdropFilter: "blur(12px)",
-      }}
-    >
-      {/* Ethiopian stripe */}
-      <div className="eth-stripe">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
+      {/* Tricolor accent bar */}
+      <div className="eth-stripe" style={{ height: "3px" }}>
         <div className="s-green" />
         <div className="s-yellow" />
         <div className="s-red" />
@@ -36,7 +30,11 @@ export default function TopNav() {
 
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-14">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2.5 shrink-0">
+        <a
+          href="#home"
+          className="flex items-center gap-2.5 shrink-0"
+          data-ocid="nav.home.link"
+        >
           <svg
             width="36"
             height="24"
@@ -55,11 +53,8 @@ export default function TopNav() {
             />
           </svg>
           <span
-            className="font-bold text-sm tracking-widest uppercase"
-            style={{
-              color: "#FCDD09",
-              fontFamily: "Playfair Display, Georgia, serif",
-            }}
+            className="font-display font-bold text-sm tracking-widest uppercase"
+            style={{ color: "oklch(0.75 0.14 85)" }}
           >
             Adwa Ethiopia
           </span>
@@ -71,8 +66,8 @@ export default function TopNav() {
             <a
               key={link.href}
               href={link.href}
-              className="px-3 py-1.5 rounded text-xs font-medium tracking-wide transition-colors hover:text-yellow-300"
-              style={{ color: "rgba(255,255,255,0.75)" }}
+              data-ocid={`nav.${link.label.toLowerCase().replace(" ", "-")}.link`}
+              className="px-3 py-1.5 rounded-btn text-xs font-medium tracking-wide transition-all duration-300 text-muted-foreground hover:text-foreground hover:bg-muted"
             >
               {link.label}
             </a>
@@ -82,8 +77,7 @@ export default function TopNav() {
         {/* Mobile hamburger */}
         <button
           type="button"
-          className="lg:hidden p-2 rounded"
-          style={{ color: "#FCDD09" }}
+          className="lg:hidden p-2 rounded-btn text-secondary"
           onClick={() => setOpen(!open)}
           aria-label="Menu"
         >
@@ -93,20 +87,13 @@ export default function TopNav() {
 
       {/* Mobile menu */}
       {open && (
-        <div
-          className="lg:hidden border-t"
-          style={{
-            background: "rgba(14,24,14,0.98)",
-            borderColor: "rgba(255,255,255,0.08)",
-          }}
-        >
+        <div className="lg:hidden border-t border-border bg-background/98">
           <div className="max-w-7xl mx-auto px-4 py-3 grid grid-cols-2 gap-1">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="px-3 py-2 rounded text-sm font-medium"
-                style={{ color: "rgba(255,255,255,0.80)" }}
+                className="px-3 py-2 rounded-btn text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                 onClick={() => setOpen(false)}
               >
                 {link.label}

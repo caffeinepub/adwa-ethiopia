@@ -121,7 +121,7 @@ export default function HeroesSection() {
       className="py-24 px-6"
       style={{
         background:
-          "linear-gradient(180deg, oklch(0.11 0.01 80) 0%, oklch(0.15 0.01 80) 100%)",
+          "linear-gradient(180deg, oklch(0.10 0.01 250) 0%, oklch(0.14 0.01 250) 100%)",
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -148,9 +148,9 @@ export default function HeroesSection() {
               In Eternal Memory
             </p>
             <h2
-              className="text-5xl md:text-6xl font-bold mb-6"
+              className="font-display text-5xl md:text-6xl font-bold mb-6"
               style={{
-                color: "oklch(0.97 0.008 80)",
+                color: "oklch(0.96 0.01 90)",
                 textShadow: "0 2px 20px rgba(252,181,20,0.15)",
               }}
             >
@@ -158,7 +158,7 @@ export default function HeroesSection() {
             </h2>
             <p
               className="text-base md:text-lg max-w-2xl mx-auto leading-relaxed"
-              style={{ color: "oklch(0.68 0.02 80)" }}
+              style={{ color: "oklch(0.65 0.02 90)" }}
             >
               These brave leaders united a nation and changed the course of
               history. Their courage on March 1, 1896 secured Ethiopia's freedom
@@ -174,8 +174,8 @@ export default function HeroesSection() {
               <div
                 className="group flex flex-col items-center text-center p-6 rounded-2xl transition-all duration-400"
                 style={{
-                  background: "oklch(0.18 0.015 80)",
-                  border: "1px solid oklch(0.25 0.01 80)",
+                  background: "oklch(0.17 0.01 250)",
+                  border: "1px solid oklch(0.28 0.02 250)",
                   cursor: "default",
                   transition:
                     "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease",
@@ -200,7 +200,7 @@ export default function HeroesSection() {
                     height: 120,
                     borderRadius: "50%",
                     padding: 3,
-                    background: `linear-gradient(135deg, ${hero.accent}, oklch(0.25 0.01 80) 60%)`,
+                    background: `linear-gradient(135deg, ${hero.accent}, oklch(0.22 0.01 250) 60%)`,
                     flexShrink: 0,
                   }}
                 >
@@ -210,7 +210,7 @@ export default function HeroesSection() {
                       height: "100%",
                       borderRadius: "50%",
                       overflow: "hidden",
-                      background: "oklch(0.12 0.01 80)",
+                      background: "oklch(0.12 0.01 250)",
                     }}
                   >
                     <img
@@ -236,7 +236,7 @@ export default function HeroesSection() {
                 {/* Name */}
                 <h3
                   className="text-lg font-bold mb-3 leading-tight"
-                  style={{ color: "oklch(0.95 0.008 80)" }}
+                  style={{ color: "oklch(0.96 0.01 90)" }}
                 >
                   {hero.name}
                 </h3>
@@ -244,7 +244,7 @@ export default function HeroesSection() {
                 {/* Description */}
                 <p
                   className="text-sm leading-relaxed"
-                  style={{ color: "oklch(0.62 0.015 80)" }}
+                  style={{ color: "oklch(0.62 0.02 90)" }}
                 >
                   {hero.description}
                 </p>
@@ -269,14 +269,14 @@ export default function HeroesSection() {
             <div
               className="inline-block px-10 py-6 rounded-2xl"
               style={{
-                background: "oklch(0.18 0.015 80)",
-                border: "1px solid oklch(0.28 0.01 80)",
+                background: "oklch(0.17 0.01 250)",
+                border: "1px solid oklch(0.28 0.02 250)",
                 boxShadow: "0 4px 32px rgba(7,137,48,0.08)",
               }}
             >
               <p
                 className="text-xl italic font-medium mb-2"
-                style={{ color: "oklch(0.88 0.02 80)" }}
+                style={{ color: "oklch(0.90 0.01 90)" }}
               >
                 "ኢትዮጵያ ትቅደም" — Ethiopia Shall Prevail
               </p>
@@ -295,7 +295,7 @@ export default function HeroesSection() {
               </div>
               <p
                 className="text-xs mt-3 tracking-widest uppercase"
-                style={{ color: "#078930" }}
+                style={{ color: "oklch(0.72 0.18 145)" }}
               >
                 Battle Cry of Adwa, 1896
               </p>

@@ -210,7 +210,7 @@ export default function HomeSection() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-5xl md:text-7xl font-bold tracking-widest uppercase text-white mb-4"
+          className="font-display text-5xl md:text-7xl font-bold tracking-widest uppercase text-white mb-4"
         >
           Adwa Ethiopia
         </motion.h1>

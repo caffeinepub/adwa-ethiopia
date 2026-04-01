@@ -66,7 +66,7 @@ export default function ChatSection() {
   };
 
   return (
-    <div className="py-20 px-6" style={{ background: "oklch(0.14 0.04 45)" }}>
+    <div className="py-20 px-6" style={{ background: "oklch(0.14 0.01 250)" }}>
       <div className="max-w-2xl mx-auto">
         <div ref={headerRef} className="fade-in-up text-center mb-12">
           <div className="eth-stripe mx-auto mb-5" style={{ maxWidth: 60 }}>
@@ -81,23 +81,23 @@ export default function ChatSection() {
             AI GUIDE
           </p>
           <h2
-            className="text-4xl md:text-5xl font-bold"
-            style={{ color: "oklch(0.95 0.008 80)" }}
+            className="font-display text-5xl md:text-6xl font-bold"
+            style={{ color: "oklch(0.96 0.01 90)" }}
           >
             Ask About Adwa
           </h2>
           <p
             className="text-base mt-4"
-            style={{ color: "oklch(0.65 0.01 80)" }}
+            style={{ color: "oklch(0.65 0.02 90)" }}
           >
             Your interactive history guide powered by AI
           </p>
         </div>
 
         <div
-          className="rounded-2xl overflow-hidden"
+          className="rounded-2xl overflow-hidden shadow-card"
           style={{
-            background: "oklch(0.19 0.04 45)",
+            background: "oklch(0.19 0.01 250)",
             boxShadow: "0 8px 40px rgba(0,0,0,0.25)",
           }}
         >
@@ -110,7 +110,7 @@ export default function ChatSection() {
                 type="button"
                 key={chip}
                 onClick={() => sendMessage(chip)}
-                className="shrink-0 px-4 py-1.5 rounded-full text-xs font-medium border transition-colors hover:bg-white/10"
+                className="shrink-0 px-4 py-1.5 rounded-full text-xs font-medium border transition-colors hover:bg-muted"
                 style={{ borderColor: "#078930", color: "#FCDD09" }}
               >
                 {chip}
@@ -140,7 +140,7 @@ export default function ChatSection() {
                           }
                         : {
                             background: "oklch(0.23 0.04 45)",
-                            color: "oklch(0.90 0.01 80)",
+                            color: "oklch(0.90 0.01 90)",
                             borderBottomLeftRadius: 4,
                           }
                     }
@@ -163,7 +163,7 @@ export default function ChatSection() {
                 onKeyDown={(e) => e.key === "Enter" && sendMessage(input)}
                 placeholder="Ask a question..."
                 className="flex-1 text-sm outline-none bg-transparent"
-                style={{ color: "oklch(0.90 0.01 80)" }}
+                style={{ color: "oklch(0.90 0.01 90)" }}
               />
               <button
                 type="button"
