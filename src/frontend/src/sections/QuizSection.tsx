@@ -11,7 +11,7 @@ interface Question {
   options: string[];
   correctIndex: number;
 }
-const TIMER_SECONDS = 5;
+const TIMER_SECONDS = 6;
 
 const questions: Question[] = [
   {
