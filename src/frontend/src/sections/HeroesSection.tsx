@@ -124,6 +124,24 @@ const heroes = [
   },
 ];
 
+const adwaQuotes = [
+  {
+    text: "The Battle of Adwa was not just a military victory — it was a triumph of the human spirit.",
+    attribution: "Emperor Menelik II",
+    accent: "#078930",
+  },
+  {
+    text: "Africa has the right to be free. Adwa proved it to the world.",
+    attribution: "Historical Reflection",
+    accent: "#FCB514",
+  },
+  {
+    text: "Adwa is a beacon of hope for all oppressed peoples. Ethiopia showed the world that freedom is worth fighting for.",
+    attribution: "Pan-African Legacy",
+    accent: "#DA121A",
+  },
+];
+
 function FadeBlock({
   children,
   delay = 0,
@@ -309,45 +327,101 @@ export default function HeroesSection() {
           ))}
         </div>
 
-        {/* Bottom quote */}
-        <FadeBlock delay={300}>
-          <div className="text-center mt-20">
-            <div
-              className="inline-block px-10 py-6 rounded-2xl"
-              style={{
-                background: "oklch(0.17 0.01 250)",
-                border: "1px solid oklch(0.28 0.02 250)",
-                boxShadow: "0 4px 32px rgba(7,137,48,0.08)",
-              }}
-            >
+        {/* Adwa Inspirational Quotes */}
+        <div className="mt-24">
+          <FadeBlock>
+            <div className="text-center mb-12">
               <p
-                className="text-xl italic font-medium mb-2"
-                style={{ color: "oklch(0.90 0.01 90)" }}
+                className="text-xs font-bold tracking-widest uppercase mb-3"
+                style={{ color: "#FCB514", letterSpacing: "0.2em" }}
               >
-                "ኢትዮጵያ ትቅደም" — Ethiopia Shall Prevail
+                Words That Echo Through History
               </p>
-              <div
-                className="flex justify-center gap-0 mx-auto mt-3"
+              <h3
+                className="font-display text-3xl md:text-4xl font-bold"
                 style={{
-                  width: 48,
-                  height: 3,
-                  borderRadius: 2,
-                  overflow: "hidden",
+                  color: "oklch(0.96 0.01 90)",
+                  textShadow: "0 2px 20px rgba(252,181,20,0.12)",
                 }}
               >
-                <div style={{ flex: 1, background: "#078930" }} />
-                <div style={{ flex: 1, background: "#FCB514" }} />
-                <div style={{ flex: 1, background: "#DA121A" }} />
-              </div>
-              <p
-                className="text-xs mt-3 tracking-widest uppercase"
-                style={{ color: "oklch(0.72 0.18 145)" }}
-              >
-                Battle Cry of Adwa, 1896
-              </p>
+                Adwa Inspirational Quotes
+              </h3>
             </div>
+          </FadeBlock>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {adwaQuotes.map((q, i) => (
+              <FadeBlock key={q.attribution} delay={i * 120}>
+                <div
+                  className="flex flex-col h-full p-7 rounded-2xl"
+                  style={{
+                    background: "oklch(0.17 0.01 250)",
+                    border: "1px solid oklch(0.28 0.02 250)",
+                    boxShadow: `0 4px 32px ${q.accent}10`,
+                    transition: "transform 0.35s ease, box-shadow 0.35s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.transform =
+                      "translateY(-8px)";
+                    (e.currentTarget as HTMLDivElement).style.boxShadow =
+                      `0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px ${q.accent}55`;
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.transform =
+                      "translateY(0)";
+                    (e.currentTarget as HTMLDivElement).style.boxShadow =
+                      `0 4px 32px ${q.accent}10`;
+                  }}
+                >
+                  {/* Tricolor stripe at top */}
+                  <div
+                    className="flex mb-6 rounded-full overflow-hidden"
+                    style={{ width: 48, height: 4 }}
+                  >
+                    <div style={{ flex: 1, background: "#078930" }} />
+                    <div style={{ flex: 1, background: "#FCB514" }} />
+                    <div style={{ flex: 1, background: "#DA121A" }} />
+                  </div>
+
+                  {/* Large decorative quote mark */}
+                  <div
+                    className="text-5xl font-serif leading-none mb-3 select-none"
+                    style={{ color: `${q.accent}55` }}
+                  >
+                    &ldquo;
+                  </div>
+
+                  {/* Quote text */}
+                  <p
+                    className="flex-1 text-base italic leading-relaxed mb-6"
+                    style={{ color: "oklch(0.82 0.02 90)" }}
+                  >
+                    {q.text}
+                  </p>
+
+                  {/* Attribution */}
+                  <div className="flex items-center gap-3">
+                    <div
+                      style={{
+                        width: 28,
+                        height: 2,
+                        background: q.accent,
+                        borderRadius: 1,
+                        flexShrink: 0,
+                      }}
+                    />
+                    <p
+                      className="text-xs font-bold tracking-wider uppercase"
+                      style={{ color: q.accent }}
+                    >
+                      {q.attribution}
+                    </p>
+                  </div>
+                </div>
+              </FadeBlock>
+            ))}
           </div>
-        </FadeBlock>
+        </div>
       </div>
     </div>
   );
