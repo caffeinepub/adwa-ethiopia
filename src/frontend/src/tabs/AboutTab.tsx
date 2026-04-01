@@ -72,7 +72,7 @@ export default function AboutTab() {
               color: "oklch(0.72 0.12 70)",
             }}
           >
-            Developer · Cultural Educator
+            Developer
           </span>
 
           <p
@@ -232,7 +232,7 @@ export default function AboutTab() {
                 className="text-xs font-semibold"
                 style={{ color: "oklch(0.90 0.015 80)" }}
               >
-                Adwa AI Learning App
+                Adwa Ethiopia
               </p>
               <p className="text-xs" style={{ color: "oklch(0.50 0.02 80)" }}>
                 Built with love for Ethiopian heritage

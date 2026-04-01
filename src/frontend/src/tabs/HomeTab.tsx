@@ -299,13 +299,41 @@ export default function HomeTab({ onNavigate }: HomeTabProps) {
               "linear-gradient(to bottom, rgba(30,16,8,0.45), rgba(30,16,8,0.75))",
           }}
         >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.05 }}
+            className="mb-2"
+          >
+            <svg
+              width="54"
+              height="36"
+              viewBox="0 0 54 36"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Ethiopian Flag with Star"
+              style={{
+                borderRadius: "3px",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.4)",
+              }}
+            >
+              <rect width="54" height="12" y="0" fill="#078930" />
+              <rect width="54" height="12" y="12" fill="#FCDD09" />
+              <rect width="54" height="12" y="24" fill="#DA121A" />
+              <circle cx="27" cy="18" r="10" fill="#0F47AF" />
+              <polygon
+                points="27,9 28.8,14.5 34.5,14.5 29.9,17.9 31.6,23.4 27,20 22.4,23.4 24.1,17.9 19.5,14.5 25.2,14.5"
+                fill="#FCDD09"
+              />
+            </svg>
+          </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             className="font-display text-xl font-bold tracking-widest uppercase text-white"
           >
-            ADWA AI LEARNING APP
+            ADWA ETHIOPIA
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
