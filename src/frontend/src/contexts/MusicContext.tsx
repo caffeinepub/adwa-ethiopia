@@ -45,11 +45,11 @@ export function MusicProvider({ children }: { children: ReactNode }) {
   const createPlayer = useCallback((_volume: number) => {
     if (!document.getElementById("yt-music-player")) return;
     playerRef.current = new window.YT.Player("yt-music-player", {
-      videoId: "SUdDn_sUTgo",
+      videoId: "fBTFdgs-hAk",
       playerVars: {
         autoplay: 1,
         loop: 1,
-        playlist: "SUdDn_sUTgo",
+        playlist: "fBTFdgs-hAk",
         controls: 0,
         disablekb: 1,
         fs: 0,

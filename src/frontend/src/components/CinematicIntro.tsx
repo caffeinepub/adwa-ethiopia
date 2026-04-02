@@ -16,13 +16,18 @@ interface Props {
   onDismiss: () => void;
 }
 
+interface HDYTPlayer {
+  destroy(): void;
+  setPlaybackQuality(quality: string): void;
+}
+
 export default function CinematicIntro({ onDismiss }: Props) {
   const { startMusic, setMusicVolume } = useMusicContext();
   const [phase, setPhase] = useState<Phase>("black");
   const [visibleLines, setVisibleLines] = useState(0);
   const [videoFaded, setVideoFaded] = useState(false);
   const playerContainerRef = useRef<HTMLDivElement>(null);
-  const playerRef = useRef<InstanceType<typeof window.YT.Player> | null>(null);
+  const playerRef = useRef<HDYTPlayer | null>(null);
   const didInit = useRef(false);
   const finishCalledRef = useRef(false);
 
@@ -76,15 +81,23 @@ export default function CinematicIntro({ onDismiss }: Props) {
           rel: 0,
           playsinline: 1,
           loop: 0,
+          hd: 1,
+          vq: "hd1080",
         },
         events: {
+          onReady: (e: { target: HDYTPlayer }) => {
+            e.target.setPlaybackQuality("hd1080");
+          },
           onStateChange: (e: { data: number }) => {
+            if (e.data === window.YT.PlayerState.PLAYING) {
+              playerRef.current?.setPlaybackQuality("hd1080");
+            }
             if (e.data === window.YT.PlayerState.ENDED) {
               handleFinish();
             }
           },
         },
-      });
+      }) as unknown as HDYTPlayer;
     }
 
     if (window.YT?.Player) {
