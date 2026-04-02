@@ -3,8 +3,11 @@ import { useState } from "react";
 import { SiFacebook, SiWhatsapp, SiX } from "react-icons/si";
 import CinematicIntro from "./components/CinematicIntro";
 import EmotionalMode from "./components/EmotionalMode";
+import EntryPopup from "./components/EntryPopup";
 import MusicController from "./components/MusicController";
 import TopNav from "./components/TopNav";
+import VideoIntro from "./components/VideoIntro";
+import { LanguageProvider } from "./contexts/LanguageContext";
 import { MusicProvider } from "./contexts/MusicContext";
 import AboutSection from "./sections/AboutSection";
 import ChatSection from "./sections/ChatSection";
@@ -35,13 +38,30 @@ export type Tab =
   | "comments";
 
 export default function App() {
-  const [popupDismissed, setPopupDismissed] = useState<boolean>(
+  const [introDone, setIntroDone] = useState<boolean>(
+    () => localStorage.getItem("adwa_intro_done") === "true",
+  );
+  const [entryDone, setEntryDone] = useState<boolean>(
     () => localStorage.getItem("adwa_entry_done") === "true",
   );
 
-  function handlePopupDismiss() {
+  const [videoDone, setVideoDone] = useState<boolean>(
+    () => localStorage.getItem("adwa_video_done") === "true",
+  );
+
+  function handleVideoDismiss() {
+    localStorage.setItem("adwa_video_done", "true");
+    setVideoDone(true);
+  }
+
+  function handleIntroDismiss() {
+    localStorage.setItem("adwa_intro_done", "true");
+    setIntroDone(true);
+  }
+
+  function handleEntryDismiss() {
     localStorage.setItem("adwa_entry_done", "true");
-    setPopupDismissed(true);
+    setEntryDone(true);
   }
 
   const siteUrl = encodeURIComponent(window.location.href);
@@ -50,190 +70,203 @@ export default function App() {
   );
 
   return (
-    <MusicProvider>
-      <div className="min-h-screen bg-background">
-        {!popupDismissed && <CinematicIntro onDismiss={handlePopupDismiss} />}
-        <TopNav />
-        <main>
-          <section id="home">
-            <HomeSection />
-          </section>
-          <section id="timeline">
-            <TimelineSection />
-          </section>
-          <section id="heroes">
-            <HeroesSection />
-          </section>
-          <section id="facts">
-            <FactsSection />
-          </section>
-          <section id="map">
-            <MapSection />
-          </section>
-          <section id="why">
-            <WhyAdwaSection />
-          </section>
-          <section id="history">
-            <HistorySection />
-          </section>
-          <section id="learn">
-            <LearnSection />
-          </section>
-          <section id="gallery">
-            <GallerySection />
-          </section>
-          <section id="quiz">
-            <QuizSection />
-          </section>
-          <section id="chat">
-            <ChatSection />
-          </section>
-          <section id="documentary">
-            <DocumentarySection />
-          </section>
-          <section id="music">
-            <MusicSection />
-          </section>
-          <section id="comments">
-            <CommentsSection />
-          </section>
-          <section id="about">
-            <AboutSection />
-          </section>
-        </main>
+    <LanguageProvider>
+      <MusicProvider>
+        <div className="min-h-screen bg-background">
+          {!introDone && <CinematicIntro onDismiss={handleIntroDismiss} />}
+          {introDone && !entryDone && (
+            <div
+              className="fixed inset-0"
+              style={{ zIndex: 9998, background: "#000" }}
+            >
+              <EntryPopup onDismiss={handleEntryDismiss} />
+            </div>
+          )}
+          {introDone && entryDone && !videoDone && (
+            <VideoIntro onDismiss={handleVideoDismiss} />
+          )}
+          <TopNav />
+          <main>
+            <section id="home">
+              <HomeSection />
+            </section>
+            <section id="timeline">
+              <TimelineSection />
+            </section>
+            <section id="heroes">
+              <HeroesSection />
+            </section>
+            <section id="facts">
+              <FactsSection />
+            </section>
+            <section id="map">
+              <MapSection />
+            </section>
+            <section id="why">
+              <WhyAdwaSection />
+            </section>
+            <section id="history">
+              <HistorySection />
+            </section>
+            <section id="learn">
+              <LearnSection />
+            </section>
+            <section id="gallery">
+              <GallerySection />
+            </section>
+            <section id="quiz">
+              <QuizSection />
+            </section>
+            <section id="chat">
+              <ChatSection />
+            </section>
+            <section id="documentary">
+              <DocumentarySection />
+            </section>
+            <section id="music">
+              <MusicSection />
+            </section>
+            <section id="comments">
+              <CommentsSection />
+            </section>
+            <section id="about">
+              <AboutSection />
+            </section>
+          </main>
 
-        <footer
-          className="text-center px-4 border-t border-border"
-          style={{ paddingTop: "4rem", paddingBottom: "3rem" }}
-        >
-          <div
-            className="eth-stripe mb-8 mx-auto"
-            style={{ height: "3px", maxWidth: "120px" }}
+          <footer
+            className="text-center px-4 border-t border-border"
+            style={{ paddingTop: "4rem", paddingBottom: "3rem" }}
           >
-            <div className="s-green" />
-            <div className="s-yellow" />
-            <div className="s-red" />
-          </div>
+            <div
+              className="eth-stripe mb-8 mx-auto"
+              style={{ height: "3px", maxWidth: "120px" }}
+            >
+              <div className="s-green" />
+              <div className="s-yellow" />
+              <div className="s-red" />
+            </div>
 
-          {/* Final Amharic narration — FINAL script */}
-          <div
-            className="mb-10"
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              fontStyle: "italic",
-              color: "rgba(212,175,55,0.85)",
-              fontSize: "clamp(1rem,2.5vw,1.2rem)",
-              lineHeight: 2,
-              letterSpacing: "0.05em",
-            }}
-          >
-            <p style={{ margin: 0 }}>{"አድዋ ዛሬም ትኖራለች።"}</p>
-            <p style={{ margin: 0 }}>{"አድዋ… ለዘላለም ነው።"}</p>
-          </div>
-
-          <p
-            className="font-display text-xl md:text-2xl italic font-bold mb-8"
-            style={{
-              color: "#FCDD09",
-              textShadow: "0 0 30px rgba(252,221,9,0.3)",
-            }}
-          >
-            &ldquo;Adwa is a symbol of freedom for all Africa&rdquo;
-          </p>
-
-          <div className="flex justify-center gap-4 mb-8">
-            <a
-              href={`https://twitter.com/intent/tweet?text=${shareText}&url=${siteUrl}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-ocid="footer.share.button"
-              aria-label="Share on X (Twitter)"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
+            {/* Final Amharic narration — FINAL script */}
+            <div
+              className="mb-10"
               style={{
-                background: "rgba(255,255,255,0.06)",
-                border: "1px solid rgba(255,255,255,0.15)",
-                color: "rgba(255,255,255,0.7)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background =
-                  "rgba(255,255,255,0.12)";
-                (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background =
-                  "rgba(255,255,255,0.06)";
-                (e.currentTarget as HTMLAnchorElement).style.color =
-                  "rgba(255,255,255,0.7)";
+                fontFamily: "'Playfair Display', serif",
+                fontStyle: "italic",
+                color: "rgba(212,175,55,0.85)",
+                fontSize: "clamp(1rem,2.5vw,1.2rem)",
+                lineHeight: 2,
+                letterSpacing: "0.05em",
               }}
             >
-              <SiX size={14} />
-              <span>Share on X</span>
-            </a>
-            <a
-              href={`https://www.facebook.com/sharer/sharer.php?u=${siteUrl}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-ocid="footer.share.button"
-              aria-label="Share on Facebook"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
+              <p style={{ margin: 0 }}>{"አድዋ ዛሬም ትኖራለች።"}</p>
+              <p style={{ margin: 0 }}>{"አድዋ… ለዘላለም ነው።"}</p>
+            </div>
+
+            <p
+              className="font-display text-xl md:text-2xl italic font-bold mb-8"
               style={{
-                background: "rgba(255,255,255,0.06)",
-                border: "1px solid rgba(255,255,255,0.15)",
-                color: "rgba(255,255,255,0.7)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background =
-                  "rgba(255,255,255,0.12)";
-                (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background =
-                  "rgba(255,255,255,0.06)";
-                (e.currentTarget as HTMLAnchorElement).style.color =
-                  "rgba(255,255,255,0.7)";
+                color: "#FCDD09",
+                textShadow: "0 0 30px rgba(252,221,9,0.3)",
               }}
             >
-              <SiFacebook size={14} />
-              <span>Facebook</span>
-            </a>
-            <a
-              href={`https://wa.me/?text=${shareText}%20${siteUrl}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-ocid="footer.share.button"
-              aria-label="Share on WhatsApp"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
-              style={{
-                background: "rgba(255,255,255,0.06)",
-                border: "1px solid rgba(255,255,255,0.15)",
-                color: "rgba(255,255,255,0.7)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background =
-                  "rgba(255,255,255,0.12)";
-                (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background =
-                  "rgba(255,255,255,0.06)";
-                (e.currentTarget as HTMLAnchorElement).style.color =
-                  "rgba(255,255,255,0.7)";
-              }}
-            >
-              <SiWhatsapp size={14} />
-              <span>WhatsApp</span>
-            </a>
-          </div>
+              &ldquo;Adwa is a symbol of freedom for all Africa&rdquo;
+            </p>
 
-          <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} by Helen Metekiya
-          </p>
-        </footer>
+            <div className="flex justify-center gap-4 mb-8">
+              <a
+                href={`https://twitter.com/intent/tweet?text=${shareText}&url=${siteUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-ocid="footer.share.button"
+                aria-label="Share on X (Twitter)"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
+                style={{
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  color: "rgba(255,255,255,0.7)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background =
+                    "rgba(255,255,255,0.12)";
+                  (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background =
+                    "rgba(255,255,255,0.06)";
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "rgba(255,255,255,0.7)";
+                }}
+              >
+                <SiX size={14} />
+                <span>Share on X</span>
+              </a>
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=${siteUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-ocid="footer.share.button"
+                aria-label="Share on Facebook"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
+                style={{
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  color: "rgba(255,255,255,0.7)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background =
+                    "rgba(255,255,255,0.12)";
+                  (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background =
+                    "rgba(255,255,255,0.06)";
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "rgba(255,255,255,0.7)";
+                }}
+              >
+                <SiFacebook size={14} />
+                <span>Facebook</span>
+              </a>
+              <a
+                href={`https://wa.me/?text=${shareText}%20${siteUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-ocid="footer.share.button"
+                aria-label="Share on WhatsApp"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
+                style={{
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  color: "rgba(255,255,255,0.7)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background =
+                    "rgba(255,255,255,0.12)";
+                  (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background =
+                    "rgba(255,255,255,0.06)";
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "rgba(255,255,255,0.7)";
+                }}
+              >
+                <SiWhatsapp size={14} />
+                <span>WhatsApp</span>
+              </a>
+            </div>
 
-        <MusicController />
-        <EmotionalMode />
-        <Toaster />
-      </div>
-    </MusicProvider>
+            <p className="text-sm text-muted-foreground">
+              &copy; {new Date().getFullYear()} by Helen Metekiya
+            </p>
+          </footer>
+
+          <MusicController />
+          <EmotionalMode />
+          <Toaster />
+        </div>
+      </MusicProvider>
+    </LanguageProvider>
   );
 }

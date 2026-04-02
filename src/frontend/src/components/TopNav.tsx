@@ -1,22 +1,23 @@
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-
-const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#timeline", label: "Timeline" },
-  { href: "#heroes", label: "Heroes" },
-  { href: "#facts", label: "Facts" },
-  { href: "#map", label: "Map" },
-  { href: "#why", label: "Why Adwa" },
-  { href: "#history", label: "History" },
-  { href: "#quiz", label: "Quiz" },
-  { href: "#chat", label: "AI Chat" },
-  { href: "#gallery", label: "Gallery" },
-  { href: "#music", label: "Music" },
-];
+import { useLanguage } from "../contexts/LanguageContext";
 
 export default function TopNav() {
   const [open, setOpen] = useState(false);
+  const { t, toggleLang } = useLanguage();
+  const navLinks = [
+    { href: "#home", label: t.navHome },
+    { href: "#timeline", label: t.navTimeline },
+    { href: "#heroes", label: t.navHeroes },
+    { href: "#facts", label: t.navFacts },
+    { href: "#map", label: t.navMap },
+    { href: "#why", label: t.navWhyAdwa },
+    { href: "#history", label: t.navHistory },
+    { href: "#quiz", label: t.navQuiz },
+    { href: "#chat", label: t.navChat },
+    { href: "#gallery", label: t.navGallery },
+    { href: "#music", label: t.navMusic },
+  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
@@ -73,16 +74,35 @@ export default function TopNav() {
           ))}
         </nav>
 
-        {/* Mobile hamburger */}
-        <button
-          type="button"
-          className="lg:hidden p-2 rounded-btn text-secondary"
-          onClick={() => setOpen(!open)}
-          aria-label="Menu"
-          data-ocid="nav.mobile.toggle"
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        {/* Language toggle + Mobile hamburger */}
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={toggleLang}
+            data-ocid="nav.lang.toggle"
+            style={{
+              color: "#FCDD09",
+              border: "1px solid #FCDD09",
+              borderRadius: 20,
+              padding: "2px 10px",
+              fontSize: 11,
+              fontWeight: 700,
+              background: "transparent",
+              cursor: "pointer",
+            }}
+          >
+            {t.langToggle}
+          </button>
+          <button
+            type="button"
+            className="lg:hidden p-2 rounded-btn text-secondary"
+            onClick={() => setOpen(!open)}
+            aria-label="Menu"
+            data-ocid="nav.mobile.toggle"
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}

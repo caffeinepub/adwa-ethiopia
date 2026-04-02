@@ -2,6 +2,8 @@ import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import AmharicNarration from "../components/AmharicNarration";
+import EthiopianCalendar from "../components/EthiopianCalendar";
+import { useLanguage } from "../contexts/LanguageContext";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const quotes = [
@@ -244,6 +246,7 @@ function QuotesCarousel() {
 export default function HomeSection() {
   const heroRef = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -327,7 +330,7 @@ export default function HomeSection() {
             letterSpacing: "-0.01em",
           }}
         >
-          Victory of Adwa
+          {t.heroTitle}
           <span
             className="block text-3xl md:text-4xl lg:text-5xl mt-2"
             style={{
@@ -335,7 +338,7 @@ export default function HomeSection() {
               textShadow: "0 0 40px rgba(252,221,9,0.5)",
             }}
           >
-            Africa&apos;s Pride
+            {t.heroPride}
           </span>
         </motion.h1>
 
@@ -347,7 +350,7 @@ export default function HomeSection() {
           className="text-lg md:text-xl mb-10 tracking-wide"
           style={{ color: "rgba(255,255,255,0.7)", letterSpacing: "0.05em" }}
         >
-          March 1, 1896 – Ethiopia defeated colonial invasion
+          {t.heroSubtitle}
         </motion.p>
 
         {/* CTA button */}
@@ -381,12 +384,22 @@ export default function HomeSection() {
               (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
             }}
           >
-            <span>Explore the Story</span>
+            <span>{t.heroBtn}</span>
             <ChevronDown
               size={16}
               className="group-hover:translate-y-1 transition-transform"
             />
           </a>
+        </motion.div>
+
+        {/* Ethiopian Calendar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+          className="flex justify-center mt-8"
+        >
+          <EthiopianCalendar />
         </motion.div>
 
         {/* OPENING Narration */}

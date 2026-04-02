@@ -26,8 +26,15 @@ export default function MapSection() {
       style={{
         background:
           "linear-gradient(180deg, oklch(0.10 0.01 250) 0%, oklch(0.13 0.01 250) 100%)",
+        fontFamily:
+          "'Nyala', 'Ethiopic Halehame TI Er', 'Abyssinica SIL', serif",
       }}
     >
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@400;600;700&display=swap');
+        .eth-font { font-family: 'Noto Serif Ethiopic', 'Nyala', serif; }
+      `}</style>
+
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -40,31 +47,30 @@ export default function MapSection() {
             <div style={{ flex: 1, background: "#DA121A" }} />
           </div>
           <p
-            className="text-xs font-bold tracking-widest uppercase mb-4"
+            className="eth-font text-xs font-bold tracking-widest uppercase mb-4"
             style={{ color: "#FCDD09", letterSpacing: "0.2em" }}
           >
-            Geography of Victory
+            የድልው ጦርነት ካርታ
           </p>
           <h2
-            className="font-display text-5xl md:text-6xl font-bold mb-6"
+            className="eth-font font-bold mb-4"
             style={{
               color: "oklch(0.96 0.01 90)",
               textShadow: "0 2px 20px rgba(252,181,20,0.15)",
+              fontSize: "clamp(2rem, 5vw, 3.2rem)",
             }}
           >
-            Battlefield Map
+            አድዋ — የጦር ሜዳ ካርታ
           </h2>
           <p
-            className="text-base md:text-lg max-w-2xl mx-auto leading-relaxed"
+            className="eth-font text-base max-w-2xl mx-auto leading-relaxed"
             style={{ color: "oklch(0.65 0.02 90)" }}
           >
-            The battle took place near the ancient town of Adwa in northern
-            Ethiopia, where Italian forces advanced and were decisively
-            repelled.
+            የካቲት ፳፫ ቀን ፲፰፻፹፰ ዓ.ም — ኢትዮጵያ ጠላቷን ድል አደረገች
           </p>
         </div>
 
-        {/* Map container */}
+        {/* Battle Map SVG */}
         <div
           ref={ref}
           className="rounded-3xl overflow-hidden"
@@ -78,271 +84,740 @@ export default function MapSection() {
               "opacity 0.9s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1)",
           }}
         >
-          <div className="p-8 md:p-12">
+          <div className="p-4 md:p-6">
             <svg
-              viewBox="0 0 500 580"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-full max-w-lg mx-auto block"
+              viewBox="0 0 700 500"
+              width="100%"
+              style={{ display: "block", borderRadius: 12 }}
               role="img"
             >
-              <title>Map of Ethiopia showing the Battle of Adwa location</title>
-              {/* Ocean background hint */}
-              <rect
-                width="500"
-                height="580"
-                fill="oklch(0.12 0.015 230)"
-                rx="16"
+              <title>Battle of Adwa Map</title>
+              {/* Sky / terrain background */}
+              <defs>
+                <radialGradient id="terrainGrad" cx="50%" cy="60%" r="70%">
+                  <stop offset="0%" stopColor="#3a2a0e" />
+                  <stop offset="100%" stopColor="#1a1205" />
+                </radialGradient>
+                <radialGradient id="adwaGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#FCDD09" stopOpacity="0.35" />
+                  <stop offset="100%" stopColor="#FCDD09" stopOpacity="0" />
+                </radialGradient>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
+              {/* Terrain */}
+              <rect width="700" height="500" fill="url(#terrainGrad)" />
+
+              {/* Mountain silhouettes */}
+              <polygon
+                points="0,320 80,200 160,280 240,180 320,260 400,160 480,240 560,150 640,220 700,180 700,500 0,500"
+                fill="#2a1e08"
+              />
+              <polygon
+                points="0,350 60,260 120,310 200,230 280,290 360,210 440,270 520,200 600,250 700,210 700,500 0,500"
+                fill="#1e1504"
               />
 
-              {/* Ethiopia shape (simplified) */}
+              {/* River */}
               <path
-                d="M 160 80
-                   L 200 65
-                   L 260 60
-                   L 310 75
-                   L 350 85
-                   L 370 110
-                   L 380 145
-                   L 370 180
-                   L 390 210
-                   L 395 250
-                   L 380 280
-                   L 360 310
-                   L 350 340
-                   L 355 370
-                   L 340 400
-                   L 310 420
-                   L 290 440
-                   L 260 460
-                   L 240 450
-                   L 220 430
-                   L 200 410
-                   L 180 420
-                   L 160 400
-                   L 145 380
-                   L 130 350
-                   L 120 310
-                   L 110 280
-                   L 115 250
-                   L 120 220
-                   L 130 190
-                   L 140 160
-                   L 145 130
-                   L 150 105
-                   Z"
-                fill="#0d3b1a"
-                stroke="#078930"
-                strokeWidth="2"
-                style={{ filter: "drop-shadow(0 0 12px rgba(7,137,48,0.3))" }}
+                d="M 80 480 Q 180 420 260 390 Q 330 370 420 380 Q 500 395 600 370"
+                stroke="#2a5a8a"
+                strokeWidth="3"
+                fill="none"
+                strokeDasharray="8,4"
+                opacity="0.6"
               />
-
-              {/* Addis Ababa dot */}
-              <circle cx="230" cy="310" r="6" fill="#FCDD09" opacity="0.9" />
               <text
-                x="244"
-                y="315"
-                fill="#FCDD09"
-                fontSize="12"
-                fontFamily="sans-serif"
-                fontWeight="bold"
-              >
-                Addis Ababa
-              </text>
-
-              {/* Adwa — pulsing red dot */}
-              <circle cx="190" cy="130" r="14" fill="#DA121A" opacity="0.3">
-                <animate
-                  attributeName="r"
-                  values="10;20;10"
-                  dur="2s"
-                  repeatCount="indefinite"
-                />
-                <animate
-                  attributeName="opacity"
-                  values="0.4;0.1;0.4"
-                  dur="2s"
-                  repeatCount="indefinite"
-                />
-              </circle>
-              <circle cx="190" cy="130" r="7" fill="#DA121A" />
-              <circle cx="190" cy="130" r="3" fill="#fff" />
-
-              {/* Adwa label */}
-              <text
-                x="205"
-                y="125"
-                fill="#DA121A"
-                fontSize="14"
-                fontFamily="sans-serif"
-                fontWeight="900"
-              >
-                ★ Adwa
-              </text>
-              <text
-                x="205"
-                y="141"
-                fill="rgba(255,255,255,0.5)"
+                x="200"
+                y="410"
+                fill="#4a8abf"
                 fontSize="10"
-                fontFamily="sans-serif"
+                fontFamily="'Noto Serif Ethiopic',serif"
+                opacity="0.7"
               >
-                Battle Site
+                ወንዝ
               </text>
 
-              {/* Italian advance arrows — from north */}
+              {/* Roads/paths */}
               <path
-                d="M 190 30 L 190 105"
+                d="M 350 480 L 350 290"
+                stroke="#6b5a30"
+                strokeWidth="2"
+                strokeDasharray="5,4"
+                opacity="0.5"
+              />
+              <path
+                d="M 100 480 Q 200 420 350 340"
+                stroke="#6b5a30"
+                strokeWidth="2"
+                strokeDasharray="5,4"
+                opacity="0.4"
+              />
+              <path
+                d="M 600 480 Q 500 420 350 340"
+                stroke="#6b5a30"
+                strokeWidth="2"
+                strokeDasharray="5,4"
+                opacity="0.4"
+              />
+
+              {/* ADWA TOWN */}
+              <circle cx="350" cy="290" r="32" fill="url(#adwaGlow)" />
+              <circle
+                cx="350"
+                cy="290"
+                r="14"
+                fill="#FCDD09"
+                opacity="0.9"
+                filter="url(#glow)"
+              />
+              <circle cx="350" cy="290" r="7" fill="#fff" />
+              <text
+                x="350"
+                y="262"
+                textAnchor="middle"
+                fill="#FCDD09"
+                fontSize="14"
+                fontFamily="'Noto Serif Ethiopic',serif"
+                fontWeight="bold"
+                filter="url(#glow)"
+              >
+                አድዋ
+              </text>
+              <text
+                x="350"
+                y="248"
+                textAnchor="middle"
+                fill="rgba(252,221,9,0.6)"
+                fontSize="10"
+                fontFamily="'Noto Serif Ethiopic',serif"
+              >
+                Adwa
+              </text>
+
+              {/* ===== ETHIOPIAN FORCES ===== */}
+              {/* Left flank — Ras Mikael */}
+              <g transform="translate(100,200)">
+                <rect
+                  x="-44"
+                  y="-16"
+                  width="88"
+                  height="32"
+                  rx="6"
+                  fill="#078930"
+                  opacity="0.88"
+                />
+                <rect
+                  x="-44"
+                  y="-16"
+                  width="88"
+                  height="32"
+                  rx="6"
+                  fill="none"
+                  stroke="#FCDD09"
+                  strokeWidth="1.5"
+                />
+                <text
+                  x="0"
+                  y="-3"
+                  textAnchor="middle"
+                  fill="#fff"
+                  fontSize="8"
+                  fontFamily="'Noto Serif Ethiopic',serif"
+                  fontWeight="600"
+                >
+                  ራስ ሚካኤል
+                </text>
+                <text
+                  x="0"
+                  y="10"
+                  textAnchor="middle"
+                  fill="rgba(255,255,255,0.75)"
+                  fontSize="7"
+                  fontFamily="'Noto Serif Ethiopic',serif"
+                >
+                  ግራ ክንፍ
+                </text>
+                <line
+                  x1="0"
+                  y1="16"
+                  x2="0"
+                  y2="50"
+                  stroke="#078930"
+                  strokeWidth="1.5"
+                  strokeDasharray="4,3"
+                />
+                <polygon points="-6,50 6,50 0,60" fill="#078930" />
+              </g>
+
+              {/* Center — Emperor Menelik II */}
+              <g transform="translate(350,160)">
+                <rect
+                  x="-58"
+                  y="-18"
+                  width="116"
+                  height="36"
+                  rx="8"
+                  fill="#078930"
+                  opacity="0.92"
+                />
+                <rect
+                  x="-58"
+                  y="-18"
+                  width="116"
+                  height="36"
+                  rx="8"
+                  fill="none"
+                  stroke="#FCDD09"
+                  strokeWidth="2"
+                />
+                {/* Crown symbol */}
+                <polygon points="-6,-20 0,-30 6,-20" fill="#FCDD09" />
+                <text
+                  x="0"
+                  y="-4"
+                  textAnchor="middle"
+                  fill="#FCDD09"
+                  fontSize="9"
+                  fontFamily="'Noto Serif Ethiopic',serif"
+                  fontWeight="700"
+                >
+                  አፄ ምኒልክ ፪
+                </text>
+                <text
+                  x="0"
+                  y="10"
+                  textAnchor="middle"
+                  fill="rgba(255,255,255,0.8)"
+                  fontSize="7.5"
+                  fontFamily="'Noto Serif Ethiopic',serif"
+                >
+                  መሃል ጦር · ዋና አዛዥ
+                </text>
+                <line
+                  x1="0"
+                  y1="18"
+                  x2="0"
+                  y2="60"
+                  stroke="#FCDD09"
+                  strokeWidth="2"
+                  strokeDasharray="4,3"
+                />
+                <polygon points="-7,60 7,60 0,72" fill="#FCDD09" />
+              </g>
+
+              {/* Right flank — Ras Makonnen */}
+              <g transform="translate(590,200)">
+                <rect
+                  x="-52"
+                  y="-16"
+                  width="104"
+                  height="32"
+                  rx="6"
+                  fill="#078930"
+                  opacity="0.88"
+                />
+                <rect
+                  x="-52"
+                  y="-16"
+                  width="104"
+                  height="32"
+                  rx="6"
+                  fill="none"
+                  stroke="#FCDD09"
+                  strokeWidth="1.5"
+                />
+                <text
+                  x="0"
+                  y="-3"
+                  textAnchor="middle"
+                  fill="#fff"
+                  fontSize="8"
+                  fontFamily="'Noto Serif Ethiopic',serif"
+                  fontWeight="600"
+                >
+                  ራስ መኮንን
+                </text>
+                <text
+                  x="0"
+                  y="10"
+                  textAnchor="middle"
+                  fill="rgba(255,255,255,0.75)"
+                  fontSize="7"
+                  fontFamily="'Noto Serif Ethiopic',serif"
+                >
+                  ቀኝ ክንፍ
+                </text>
+                <line
+                  x1="0"
+                  y1="16"
+                  x2="0"
+                  y2="50"
+                  stroke="#078930"
+                  strokeWidth="1.5"
+                  strokeDasharray="4,3"
+                />
+                <polygon points="-6,50 6,50 0,60" fill="#078930" />
+              </g>
+
+              {/* Empress Taytu — reserve */}
+              <g transform="translate(350,100)">
+                <rect
+                  x="-50"
+                  y="-14"
+                  width="100"
+                  height="28"
+                  rx="6"
+                  fill="#4a1e6a"
+                  opacity="0.9"
+                />
+                <rect
+                  x="-50"
+                  y="-14"
+                  width="100"
+                  height="28"
+                  rx="6"
+                  fill="none"
+                  stroke="#DA121A"
+                  strokeWidth="1.5"
+                />
+                <text
+                  x="0"
+                  y="-2"
+                  textAnchor="middle"
+                  fill="#fff"
+                  fontSize="8"
+                  fontFamily="'Noto Serif Ethiopic',serif"
+                  fontWeight="600"
+                >
+                  እቴጌ ጣይቱ
+                </text>
+                <text
+                  x="0"
+                  y="10"
+                  textAnchor="middle"
+                  fill="rgba(255,255,255,0.75)"
+                  fontSize="7"
+                  fontFamily="'Noto Serif Ethiopic',serif"
+                >
+                  ተጠባባቂ ሃይል
+                </text>
+              </g>
+
+              {/* Ras Alula */}
+              <g transform="translate(210,340)">
+                <rect
+                  x="-44"
+                  y="-14"
+                  width="88"
+                  height="28"
+                  rx="6"
+                  fill="#056d20"
+                  opacity="0.88"
+                />
+                <rect
+                  x="-44"
+                  y="-14"
+                  width="88"
+                  height="28"
+                  rx="6"
+                  fill="none"
+                  stroke="#FCDD09"
+                  strokeWidth="1"
+                />
+                <text
+                  x="0"
+                  y="-2"
+                  textAnchor="middle"
+                  fill="#fff"
+                  fontSize="8"
+                  fontFamily="'Noto Serif Ethiopic',serif"
+                  fontWeight="600"
+                >
+                  ራስ ዓሉላ
+                </text>
+                <text
+                  x="0"
+                  y="10"
+                  textAnchor="middle"
+                  fill="rgba(255,255,255,0.7)"
+                  fontSize="7"
+                  fontFamily="'Noto Serif Ethiopic',serif"
+                >
+                  ሰሜን ጦር
+                </text>
+              </g>
+
+              {/* ===== ITALIAN FORCES ===== */}
+              {/* Albertone column — left */}
+              <g transform="translate(140,440)">
+                <rect
+                  x="-50"
+                  y="-14"
+                  width="100"
+                  height="28"
+                  rx="6"
+                  fill="#8B1a1a"
+                  opacity="0.88"
+                />
+                <rect
+                  x="-50"
+                  y="-14"
+                  width="100"
+                  height="28"
+                  rx="6"
+                  fill="none"
+                  stroke="#DA121A"
+                  strokeWidth="1.5"
+                />
+                <text
+                  x="0"
+                  y="-2"
+                  textAnchor="middle"
+                  fill="#fff"
+                  fontSize="8"
+                  fontFamily="sans-serif"
+                  fontWeight="600"
+                >
+                  Gen. Albertone
+                </text>
+                <text
+                  x="0"
+                  y="10"
+                  textAnchor="middle"
+                  fill="rgba(255,255,255,0.7)"
+                  fontSize="7"
+                  fontFamily="sans-serif"
+                >
+                  Left Column
+                </text>
+              </g>
+
+              {/* Arimondi column — center */}
+              <g transform="translate(350,455)">
+                <rect
+                  x="-52"
+                  y="-14"
+                  width="104"
+                  height="28"
+                  rx="6"
+                  fill="#8B1a1a"
+                  opacity="0.9"
+                />
+                <rect
+                  x="-52"
+                  y="-14"
+                  width="104"
+                  height="28"
+                  rx="6"
+                  fill="none"
+                  stroke="#DA121A"
+                  strokeWidth="2"
+                />
+                <text
+                  x="0"
+                  y="-2"
+                  textAnchor="middle"
+                  fill="#fff"
+                  fontSize="8"
+                  fontFamily="sans-serif"
+                  fontWeight="600"
+                >
+                  Gen. Arimondi
+                </text>
+                <text
+                  x="0"
+                  y="10"
+                  textAnchor="middle"
+                  fill="rgba(255,255,255,0.75)"
+                  fontSize="7"
+                  fontFamily="sans-serif"
+                >
+                  Center Column
+                </text>
+              </g>
+
+              {/* Dabormida column — right */}
+              <g transform="translate(560,440)">
+                <rect
+                  x="-52"
+                  y="-14"
+                  width="104"
+                  height="28"
+                  rx="6"
+                  fill="#8B1a1a"
+                  opacity="0.88"
+                />
+                <rect
+                  x="-52"
+                  y="-14"
+                  width="104"
+                  height="28"
+                  rx="6"
+                  fill="none"
+                  stroke="#DA121A"
+                  strokeWidth="1.5"
+                />
+                <text
+                  x="0"
+                  y="-2"
+                  textAnchor="middle"
+                  fill="#fff"
+                  fontSize="8"
+                  fontFamily="sans-serif"
+                  fontWeight="600"
+                >
+                  Gen. Dabormida
+                </text>
+                <text
+                  x="0"
+                  y="10"
+                  textAnchor="middle"
+                  fill="rgba(255,255,255,0.7)"
+                  fontSize="7"
+                  fontFamily="sans-serif"
+                >
+                  Right Column
+                </text>
+              </g>
+
+              {/* Barattieri reserve */}
+              <g transform="translate(350,500)">
+                {/* below canvas, just for label near bottom */}
+              </g>
+
+              {/* Attack arrows — Italian advancing */}
+              <path
+                d="M 140 426 Q 200 380 250 340"
                 stroke="#DA121A"
                 strokeWidth="2"
-                strokeDasharray="6 4"
                 fill="none"
-                opacity="0.8"
-              >
-                <animate
-                  attributeName="stroke-dashoffset"
-                  values="100;0"
-                  dur="3s"
-                  repeatCount="indefinite"
-                />
-              </path>
-              <polygon
-                points="190,108 184,90 196,90"
-                fill="#DA121A"
+                strokeDasharray="6,4"
+                markerEnd="url(#arrowRed)"
                 opacity="0.8"
               />
-              <text
-                x="195"
-                y="55"
-                fill="#DA121A"
-                fontSize="11"
-                fontFamily="sans-serif"
-                fontWeight="bold"
-                opacity="0.9"
-              >
-                Italian Advance
-              </text>
-
-              {/* Ethiopian defense arrows from south */}
               <path
-                d="M 190 240 L 190 160"
-                stroke="#078930"
+                d="M 350 441 L 350 330"
+                stroke="#DA121A"
                 strokeWidth="2"
-                strokeDasharray="6 4"
                 fill="none"
-                opacity="0.8"
-              >
-                <animate
-                  attributeName="stroke-dashoffset"
-                  values="0;-100"
-                  dur="3s"
-                  repeatCount="indefinite"
-                />
-              </path>
-              <polygon
-                points="190,155 184,175 196,175"
-                fill="#078930"
+                strokeDasharray="6,4"
+                markerEnd="url(#arrowRed)"
                 opacity="0.8"
               />
-              <text
-                x="196"
-                y="210"
-                fill="#078930"
-                fontSize="11"
-                fontFamily="sans-serif"
-                fontWeight="bold"
-                opacity="0.9"
-              >
-                Ethiopian Defense
-              </text>
+              <path
+                d="M 560 426 Q 500 380 450 340"
+                stroke="#DA121A"
+                strokeWidth="2"
+                fill="none"
+                strokeDasharray="6,4"
+                markerEnd="url(#arrowRed)"
+                opacity="0.8"
+              />
 
-              {/* Red Sea label */}
-              <text
-                x="355"
-                y="100"
-                fill="rgba(255,255,255,0.3)"
-                fontSize="11"
-                fontFamily="sans-serif"
-                fontStyle="italic"
-              >
-                Red Sea
-              </text>
+              {/* Counter-attack arrows — Ethiopian */}
+              <path
+                d="M 100 216 Q 175 265 240 300"
+                stroke="#078930"
+                strokeWidth="2.5"
+                fill="none"
+                markerEnd="url(#arrowGreen)"
+                opacity="0.9"
+              />
+              <path
+                d="M 350 178 L 350 276"
+                stroke="#FCDD09"
+                strokeWidth="2.5"
+                fill="none"
+                markerEnd="url(#arrowGold)"
+                opacity="0.9"
+              />
+              <path
+                d="M 590 216 Q 515 265 460 300"
+                stroke="#078930"
+                strokeWidth="2.5"
+                fill="none"
+                markerEnd="url(#arrowGreen)"
+                opacity="0.9"
+              />
+
+              {/* Arrow markers */}
+              <defs>
+                <marker
+                  id="arrowRed"
+                  markerWidth="8"
+                  markerHeight="8"
+                  refX="6"
+                  refY="3"
+                  orient="auto"
+                >
+                  <path d="M0,0 L0,6 L8,3 z" fill="#DA121A" />
+                </marker>
+                <marker
+                  id="arrowGreen"
+                  markerWidth="8"
+                  markerHeight="8"
+                  refX="6"
+                  refY="3"
+                  orient="auto"
+                >
+                  <path d="M0,0 L0,6 L8,3 z" fill="#078930" />
+                </marker>
+                <marker
+                  id="arrowGold"
+                  markerWidth="8"
+                  markerHeight="8"
+                  refX="6"
+                  refY="3"
+                  orient="auto"
+                >
+                  <path d="M0,0 L0,6 L8,3 z" fill="#FCDD09" />
+                </marker>
+              </defs>
 
               {/* Legend */}
               <rect
-                x="20"
-                y="490"
-                width="200"
-                height="70"
+                x="12"
+                y="12"
+                width="180"
+                height="100"
                 rx="8"
-                fill="rgba(0,0,0,0.4)"
+                fill="rgba(0,0,0,0.65)"
+                stroke="rgba(252,221,9,0.3)"
+                strokeWidth="1"
               />
-              <circle cx="40" cy="510" r="6" fill="#DA121A" />
               <text
-                x="55"
-                y="515"
-                fill="rgba(255,255,255,0.8)"
-                fontSize="11"
-                fontFamily="sans-serif"
+                x="22"
+                y="30"
+                fill="#FCDD09"
+                fontSize="10"
+                fontFamily="'Noto Serif Ethiopic',serif"
+                fontWeight="700"
               >
-                Battle Site — Adwa
+                ምልክቶች
               </text>
-              <circle cx="40" cy="530" r="5" fill="#FCDD09" />
+              <rect
+                x="22"
+                y="38"
+                width="14"
+                height="10"
+                rx="2"
+                fill="#078930"
+              />
               <text
-                x="55"
-                y="535"
-                fill="rgba(255,255,255,0.8)"
-                fontSize="11"
+                x="42"
+                y="48"
+                fill="#ccc"
+                fontSize="9"
+                fontFamily="'Noto Serif Ethiopic',serif"
+              >
+                የኢትዮጵያ ጦር
+              </text>
+              <rect
+                x="22"
+                y="54"
+                width="14"
+                height="10"
+                rx="2"
+                fill="#8B1a1a"
+              />
+              <text
+                x="42"
+                y="64"
+                fill="#ccc"
+                fontSize="9"
                 fontFamily="sans-serif"
               >
-                Capital — Addis Ababa
+                Italian Forces
               </text>
               <line
-                x1="30"
-                y1="550"
-                x2="50"
-                y2="550"
-                stroke="#DA121A"
+                x1="22"
+                y1="79"
+                x2="36"
+                y2="79"
+                stroke="#078930"
                 strokeWidth="2"
-                strokeDasharray="4 3"
+                markerEnd="url(#arrowGreen)"
               />
               <text
-                x="55"
-                y="554"
-                fill="rgba(255,255,255,0.8)"
-                fontSize="11"
+                x="42"
+                y="83"
+                fill="#ccc"
+                fontSize="9"
+                fontFamily="'Noto Serif Ethiopic',serif"
+              >
+                ዘመቻ
+              </text>
+              <line
+                x1="22"
+                y1="96"
+                x2="36"
+                y2="96"
+                stroke="#DA121A"
+                strokeWidth="2"
+                strokeDasharray="4,2"
+              />
+              <text
+                x="42"
+                y="100"
+                fill="#ccc"
+                fontSize="9"
                 fontFamily="sans-serif"
               >
-                Italian Advance
+                Italian advance
+              </text>
+
+              {/* Title banner */}
+              <text
+                x="350"
+                y="28"
+                textAnchor="middle"
+                fill="#FCDD09"
+                fontSize="16"
+                fontFamily="'Noto Serif Ethiopic',serif"
+                fontWeight="700"
+                opacity="0.95"
+              >
+                የአድዋ ጦርነት ካርታ — ፲፰፻፹፰ ዓ.ም
               </text>
             </svg>
           </div>
 
           {/* Info bar */}
           <div
-            className="px-8 py-5 flex flex-col sm:flex-row gap-4 items-center justify-center"
+            className="px-8 py-5 flex flex-col sm:flex-row gap-6 items-center justify-center"
             style={{
               background: "rgba(7,137,48,0.08)",
               borderTop: "1px solid oklch(0.28 0.02 250)",
             }}
           >
             {[
-              {
-                label: "Battle Location",
-                value: "Adwa, Tigray",
-                color: "#DA121A",
-              },
-              { label: "Elevation", value: "~2,100m", color: "#FCDD09" },
-              { label: "Date", value: "March 1, 1896", color: "#078930" },
+              { label: "የጦር ሜዳ", value: "አድዋ፣ ኢትዮጵያ", color: "#DA121A" },
+              { label: "የኢትዮጵያ ጦር", value: "~100,000", color: "#078930" },
+              { label: "የጣሊያን ጦር", value: "~14,500", color: "#FCDD09" },
             ].map((info) => (
               <div key={info.label} className="text-center">
                 <p
                   className="text-xs uppercase tracking-wider"
-                  style={{ color: "oklch(0.50 0.02 90)" }}
+                  style={{
+                    color: "oklch(0.50 0.02 90)",
+                    fontFamily: "'Noto Serif Ethiopic',serif",
+                  }}
                 >
                   {info.label}
                 </p>
                 <p
                   className="text-sm font-bold mt-1"
-                  style={{ color: info.color }}
+                  style={{
+                    color: info.color,
+                    fontFamily: "'Noto Serif Ethiopic',serif",
+                  }}
                 >
                   {info.value}
                 </p>
