@@ -11,6 +11,17 @@ interface Props {
   onDismiss: () => void;
 }
 
+const NAV_LINKS = [
+  { label: "Home", href: "#home" },
+  { label: "Timeline", href: "#timeline" },
+  { label: "Heroes", href: "#heroes" },
+  { label: "Map", href: "#map" },
+  { label: "Quiz", href: "#quiz" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Documentary", href: "#documentary" },
+  { label: "Chat", href: "#chat" },
+];
+
 export default function VideoIntro({ onDismiss }: Props) {
   const { startMusic, setMusicVolume } = useMusicContext();
   const [videoFaded, setVideoFaded] = useState(false);
@@ -93,12 +104,56 @@ export default function VideoIntro({ onDismiss }: Props) {
     setTimeout(onDismiss, 1800);
   }
 
+  function handleNavClick(href: string) {
+    handleFinish();
+    // After dismiss animation, scroll to the target section
+    setTimeout(() => {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 1900);
+  }
+
   return (
     <>
       <style>{`
         @keyframes cinematic-zoom {
           from { transform: translate(-50%, -50%) scale(1); }
           to   { transform: translate(-50%, -50%) scale(1.07); }
+        }
+        .intro-nav-bar::-webkit-scrollbar { display: none; }
+        .intro-nav-bar { scrollbar-width: none; }
+        .intro-nav-link {
+          white-space: nowrap;
+          padding: 0.35rem 0.9rem;
+          font-size: 0.68rem;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.75);
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          font-family: 'Plus Jakarta Sans', 'General Sans', sans-serif;
+          transition: color 0.25s, text-shadow 0.25s;
+          border-radius: 2px;
+          position: relative;
+        }
+        .intro-nav-link::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 0;
+          height: 1px;
+          background: #d4af37;
+          transition: width 0.25s;
+        }
+        .intro-nav-link:hover {
+          color: #d4af37;
+          text-shadow: 0 0 12px rgba(212,175,55,0.45);
+        }
+        .intro-nav-link:hover::after {
+          width: 60%;
         }
       `}</style>
 
@@ -192,6 +247,72 @@ export default function VideoIntro({ onDismiss }: Props) {
           >
             Skip Intro ›
           </button>
+        </motion.div>
+
+        {/* Bottom navigation menu */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: videoFaded ? 1 : 0, y: videoFaded ? 0 : 16 }}
+          transition={{ duration: 1.0, delay: 1.4, ease: "easeOut" }}
+          style={{
+            position: "absolute",
+            bottom: "2rem",
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 10,
+            maxWidth: "90vw",
+            width: "max-content",
+          }}
+          data-ocid="video_intro.panel"
+        >
+          <div
+            className="intro-nav-bar"
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: "0.15rem",
+              padding: "0.55rem 1.2rem",
+              background: "rgba(0,0,0,0.55)",
+              backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
+              borderRadius: "999px",
+              border: "1px solid rgba(212,175,55,0.28)",
+              borderTop: "1.5px solid rgba(212,175,55,0.45)",
+              boxShadow:
+                "0 4px 32px rgba(0,0,0,0.55), 0 0 0 1px rgba(212,175,55,0.08)",
+              overflowX: "auto",
+              maxWidth: "90vw",
+            }}
+          >
+            {NAV_LINKS.map((link, i) => (
+              <span
+                key={link.href}
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                {i > 0 && (
+                  <span
+                    style={{
+                      display: "inline-block",
+                      width: "1px",
+                      height: "10px",
+                      background: "rgba(212,175,55,0.22)",
+                      margin: "0 0.1rem",
+                      flexShrink: 0,
+                    }}
+                  />
+                )}
+                <button
+                  type="button"
+                  className="intro-nav-link"
+                  onClick={() => handleNavClick(link.href)}
+                  data-ocid={`video_intro.${link.label.toLowerCase()}.link`}
+                >
+                  {link.label}
+                </button>
+              </span>
+            ))}
+          </div>
         </motion.div>
 
         {/* Bottom glow */}
